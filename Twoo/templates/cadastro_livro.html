@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
+﻿{% load staticfiles %}
+
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -10,14 +12,14 @@
 
     <title>Chameleon | Cadastro de Livro</title>
 
-    {% load staticfiles %}
 	
-    <link href="{% static 'css/bootstrap.min.css ' %}" rel="stylesheet" type="text/css">
-	<link href="{% static 'css/cadastros.css ' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet" >
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static 'css/cadastros.css' %}" rel="stylesheet">
 
     
-    <link href="{% static 'css/starter-template.css'  %}" rel="stylesheet" type="text/css">
-	<link href="{% static 'css/navbar-static-top.css'  %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/starter-template.css' %}" rel="stylesheet">
+	<link href="{% static 'css/navbar-static-top.css' %}" rel="stylesheet">
 
     
   </head>
@@ -65,8 +67,8 @@
       <form class="form-signin" role="form">
         <h2 class="form-signin-heading">Cadastro</h2>
 		
-        <input type="text" class="form-control" id="codigo" name= "codigo" placeholder="Codigo" disabled>
-		<input type="text" class="form-control" id="titulo" name= "titulo" placeholder="Titulo" required autofocus>
+        <input type="text" class="form-control" id="codigo" name= "codigo" placeholder="Codigo" required autofocus>
+		<input type="text" class="form-control" id="titulo" name= "titulo" placeholder="Titulo" required>
         <input type="text" class="form-control" id="autor" name= "autor" placeholder="Autor" required>
 		<input type="text" class="form-control" id="editora" name= "editora" placeholder="Editora" required>
 		<input type="text" class="form-control" id="genero" name= "genero" placeholder="Genero" required>
@@ -82,6 +84,6 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
   </body>
 </html>

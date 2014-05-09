@@ -24,11 +24,12 @@ from django.http.response import HttpResponse
 
 
 def cadLivro(request):
-    return render_to_response('templates/cadastro_livro.html') # render_to_response(template)
+    # nao eh necessario referenciar a pasta templates
+    return render_to_response('cadastro_livro.html') # render_to_response(template)
 
 def home(request):
     
-    return render(request, 'templates/index.html', {'email':''}) # render(request, template, contexto)
+    return render(request, 'index.html', {'email':''}) # render(request, template, contexto)
 
 def homeY (request):
     return HttpResponse("INDEX");

@@ -17,7 +17,7 @@ from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
 
-from Library.views import cadLivro
+from library.views import cadLivro
 
 #Definição do mapeamento entre urls e o codigo que as manipula.
 urlpatterns = patterns('',
@@ -26,7 +26,8 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
     # url(r'^admin/', include(admin.site.urls)),
     
-    url(r'^home/$', 'Library.views.home', name='nHome'),
+    url(r'^$', 'library.views.home', name='nHome'),
+    # url(r'^home/$', 'library.views.home', name='nHome'),
     url(r'^cadLivro/$', cadLivro, name='nCadLivro'),
 )
 
