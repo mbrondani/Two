@@ -6,7 +6,7 @@ from django.contrib import admin
 # Registro dos Models
 
 # realiza import relativo
-from . models import Biblioteca, Livro
+from library.models import Biblioteca, Livro
 
 
 admin.site.register(Biblioteca)

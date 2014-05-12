@@ -17,22 +17,67 @@ Resumindo:
 """
 
 from django.shortcuts import render, render_to_response
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, HttpResponseRedirect
+
+from library.models import Livro
+from django.core.urlresolvers import reverse
 
 # Create your views here.
 
+def home(request):
 
+    return render(request, 'index.html')
+
+    # return render_to_response('index.html') 
+    # render(request, template, contexto)
 
 def cadLivro(request):
-    # nao eh necessario referenciar a pasta templates
-    return render_to_response('cadastro_livro.html') # render_to_response(template)
-
-def home(request):
     
-    return render(request, 'index.html', {'email':''}) # render(request, template, contexto)
+    livros = Livro.objects.all() # Lista de livros
 
-def homeY (request):
-    return HttpResponse("INDEX");
+    if request.method == "POST":
+        
+        codigo = request.POST.get('codigo')
+        titulo = request.POST.get('titulo')
+        autor = request.POST.get('autor')
+        editora = request.POST.get('editora')
+        genero = request.POST.get('genero')
+        publicacao = request.POST.get('publicacao')
+        sinopse = request.POST.get('sinopse')
+        
+        novo_livro = Livro(
+                        'codigo': codigo,
+                        'titulo': titulo,
+                        'autor': autor,
+                        'editora': editora,
+                        'genero': genero,
+                        'publicacao': publicacao,
+                        'sinopse': sinopse,
+                    )
+        novo_livro.save()
+        HttpResponseRedirect(reverse('nCadLivro'))
+                
+    return render(request, 'cadastro_livro.html', 
+                  {
+                    'livros': livros,
+                  }
+                )
+    
+    # Sem formularios
+    # nao eh necessario referenciar a pasta templates
+    # render_to_response(template)
+    
+def cadUsuario(request):
+    return render_to_response('cadastro_usuario.html')
+
+def cadFuncionario(request):
+    return render_to_response('cadastro_funcionario.html')
+
+def emprestimo(request):
+    return render_to_response('emprestimos.html')
+
+def teste(request):
+    return render_to_response('library.html')
 
 
 """

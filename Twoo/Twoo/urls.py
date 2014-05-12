@@ -3,9 +3,9 @@
 """
 
 As URLs para este projeto Django. Pense nisso como como uma 
-"tabela de conteÃºdo" para o seu site em Django.
+"tabela de conteudo" para o seu site em Django.
 
-Mapeamento entre URL's e funÃ§Ãµes View que devem ser chamadas 
+Mapeamento entre URL's e funções View que devem ser chamadas 
 por essas URL's.
 
 """
@@ -17,18 +17,27 @@ from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
 
-from library.views import cadLivro
+from library.views import cadLivro, cadUsuario, cadFuncionario, emprestimo, teste
 
-#DefiniÃ§Ã£o do mapeamento entre urls e o codigo que as manipula.
+# Definiçao do mapeamento entre urls e o codigo que as manipula.
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'Twoo.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
     # url(r'^admin/', include(admin.site.urls)),
     
+    #===============================================================================#
+    #                                URL's Library                                  #
+    
     url(r'^$', 'library.views.home', name='nHome'),
-    # url(r'^home/$', 'library.views.home', name='nHome'),
     url(r'^cadLivro/$', cadLivro, name='nCadLivro'),
+    url(r'^cadUsuario/$', cadUsuario, name='nCadUsuario'),
+    url(r'^cadFuncionario/$', cadFuncionario, name='nCadFuncionario'),
+    url(r'^emprestimo$', emprestimo, name='nEmprestimo'),
+    
+    #===============================================================================#
+    
+    url(r'^testetemplate/$', teste, name='nTeste'),
 )
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

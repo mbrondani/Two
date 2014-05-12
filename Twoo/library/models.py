@@ -3,8 +3,13 @@
 from django.db import models
 from time import strftime
 
-# Create your models here.
-# Criação dos models
+#===============================================================================
+#                             Observações
+# querySet = Lista de Objetos
+# Field = Classe responsavel por validação
+# Widget = Representação do Field em HTML
+#
+#===============================================================================
 
 
 class Biblioteca(models.Model):
@@ -24,7 +29,32 @@ class Livro(models.Model):
     genero = models.CharField(max_length = 45)
     sinopse = models.TextField('Resumo do Livro')
     titulo = models.CharField('Titulo',max_length = 150)
-    biblioteca = models.ForeignKey(Biblioteca)
+    biblioteca = models.OneToOneField(Biblioteca)
 
     def __unicode__(self):
-        return self.titulo
+        return (self.titulo, self.autor)
+
+#===============================================================================#
+# Criar outros Models
+#===============================================================================#
+
+'''
+
+class Usuario(models.Model):
+    pass
+
+class Funcionario(models.Model):
+    pass
+
+class Emprestimo(models.Model):
+    
+    codLivro = models.OneToOneField(Livro)
+    titulo = models.CharField(max_length = 80)
+    usuario = models.OneToOneField(Usuario)
+    funcionario = models.OneToOneField(Funcionario)
+    endereco = models.CharField(max_length = 80)
+    email = models.EmailField()
+    dt_saida = models.DateField()
+    dt_devolucao = models.DateField()
+
+'''
