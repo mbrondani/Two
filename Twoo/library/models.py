@@ -22,15 +22,15 @@ class Biblioteca(models.Model):
         return self.nome
 
 class Livro(models.Model):
-
-    publicacao = models.CharField(max_length = 4)
+    codigo = models.IntegerField()
+    publicacao = models.IntegerField()
     autor = models.CharField(max_length = 80)
     editora = models.CharField(max_length = 45)
     genero = models.CharField(max_length = 45)
-    sinopse = models.TextField()
+    sinopse = models.CharField(max_length=150)
     titulo = models.CharField(max_length = 150)
-    biblioteca = models.OneToOneField(Biblioteca)
-
+    biblioteca = models.ForeignKey(Biblioteca)
+    
     def __unicode__(self):
         return (self.titulo, self.autor)
 

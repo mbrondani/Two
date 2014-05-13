@@ -1,0 +1,34 @@
+from library.models import Livro
+
+def cadLivro (request):
+    livros = Livro.objects.all()
+    
+    if request.method == 'POST':
+        publicacao = request.POST.get('publicacao')        
+        autor = request.POST.get('autor')
+        editora = request.POST.get('editora')
+        genero = request.POST.get('genero')
+        sinopse = request.POST.get('sinopse')
+        titulo = request.POST.get('titulo')
+        
+        novo_livro = Livro(
+            publicacao = publicacao,
+            autor = autor,
+            editora = editora,
+            genero = genero,
+            sinopse = sinopse,
+            titulo = titulo
+        )
+        novo_livro.save()
+        HttpResponseRedirect(reverse('nCadLivro'))
+        return render(request, 'cadastro_livro.html',
+                            {
+                                'livros':livros,
+                            }
+                      )
+
+
+
+#=======================================================================
+# Cadastro sem form
+#=======================================================================

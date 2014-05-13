@@ -33,37 +33,15 @@ def home(request):
 def cadLivro(request):
     
     livros = Livro.objects.all() # Lista de livros
-
     if request.method == "POST":
         form = FormLivro(request.POST)
-        if form.is_valid():
-            publicacao = form.cleaned_data.get('publicacao')        
-            autor
-            editora
-            genero
-            sinopse
-            titulo
-            
-            novo_contato = Livro(
-                publicacao = publicacao,
-                autor = autor,
-                editora = editora,
-                genero = genero, 
-                sinopse = sinopse,
-                titulo = titulo
-            )
-            return HttpResponseRedirect()
+        if form.is_valid(): # Processando o Formulario
+            novo_livro = form.save()
+            HttpResponseRedirect(reverse('nCadLivro'))
     else:
         form = FormLivro()
-        
-        HttpResponseRedirect(reverse('nCadLivro'))
-                
-    return render(request, 'cadastro_livro.html', 
-                  )
-    
-    # Sem formularios
-    # nao eh necessario referenciar a pasta templates
-    # render_to_response(template)
+                        
+    return render(request, 'cadastro_livro.html')
     
 def cadUsuario(request):
     return render_to_response('cadastro_usuario.html')
