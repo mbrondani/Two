@@ -14,21 +14,21 @@ from time import strftime
 
 class Biblioteca(models.Model):
 
-    endereco = models.CharField('Endereço', max_length = 80)
-    nome = models.CharField('Nome', max_length = 60)
-    telefone = models.IntegerField('Telefone', max_length = 11)
+    endereco = models.CharField(max_length = 80)
+    nome = models.CharField(max_length = 60)
+    telefone = models.IntegerField(max_length = 11)
 
     def __unicode__(self):
         return self.nome
 
 class Livro(models.Model):
 
-    ano_publicacao = models.CharField('Ano de Publicação', max_length = 4)
-    autor = models.CharField('Autor',max_length = 80)
+    publicacao = models.CharField(max_length = 4)
+    autor = models.CharField(max_length = 80)
     editora = models.CharField(max_length = 45)
     genero = models.CharField(max_length = 45)
-    sinopse = models.TextField('Resumo do Livro')
-    titulo = models.CharField('Titulo',max_length = 150)
+    sinopse = models.TextField()
+    titulo = models.CharField(max_length = 150)
     biblioteca = models.OneToOneField(Biblioteca)
 
     def __unicode__(self):

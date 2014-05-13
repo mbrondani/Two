@@ -18,11 +18,10 @@ Resumindo:
 
 from django.shortcuts import render, render_to_response
 from django.http.response import HttpResponse, HttpResponseRedirect
-
-from library.models import Livro
 from django.core.urlresolvers import reverse
 
-# Create your views here.
+from library.models import Livro
+from library.forms import FormLivro
 
 def home(request):
 
@@ -36,32 +35,31 @@ def cadLivro(request):
     livros = Livro.objects.all() # Lista de livros
 
     if request.method == "POST":
+        form = FormLivro(request.POST)
+        if form.is_valid():
+            publicacao = form.cleaned_data.get('publicacao')        
+            autor
+            editora
+            genero
+            sinopse
+            titulo
+            
+            novo_contato = Livro(
+                publicacao = publicacao,
+                autor = autor,
+                editora = editora,
+                genero = genero, 
+                sinopse = sinopse,
+                titulo = titulo
+            )
+            return HttpResponseRedirect()
+    else:
+        form = FormLivro()
         
-        codigo = request.POST.get('codigo')
-        titulo = request.POST.get('titulo')
-        autor = request.POST.get('autor')
-        editora = request.POST.get('editora')
-        genero = request.POST.get('genero')
-        publicacao = request.POST.get('publicacao')
-        sinopse = request.POST.get('sinopse')
-        
-        novo_livro = Livro(
-                        'codigo': codigo,
-                        'titulo': titulo,
-                        'autor': autor,
-                        'editora': editora,
-                        'genero': genero,
-                        'publicacao': publicacao,
-                        'sinopse': sinopse,
-                    )
-        novo_livro.save()
         HttpResponseRedirect(reverse('nCadLivro'))
                 
     return render(request, 'cadastro_livro.html', 
-                  {
-                    'livros': livros,
-                  }
-                )
+                  )
     
     # Sem formularios
     # nao eh necessario referenciar a pasta templates
