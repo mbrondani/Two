@@ -1,0 +1,23 @@
+﻿{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Chameleon | Cadastro de Biblioteca{% endblock %}
+
+{% block Estilo %}
+	<link href="{% static 'css/biblioteca.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block Corpo %}
+    <div class="container">
+
+      <form class="starter-template" role="form" action="." method="post"> {% csrf_token %}
+        <h2>Cadastro Library</h2>
+		<input type="text" class="form-control" id="nome" name= "nome" placeholder="Nome" required autofocus>
+		<input type="text" class="form-control" id="endereco" name= "endereco" placeholder="Endereço" required>
+        <input type="text" class="form-control" id="telefone" name= "telefone" placeholder="Telefone" required>
+		
+		<br><p><button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar</button></p>
+      </form>
+	  
+    </div>	
+{% endblock %}

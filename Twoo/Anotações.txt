@@ -1,3 +1,7 @@
+#=======================================================================
+# Cadastro sem form
+#=======================================================================
+
 from library.models import Livro
 
 def cadLivro (request):
@@ -29,6 +33,31 @@ def cadLivro (request):
 
 
 
+
 #=======================================================================
-# Cadastro sem form
+# Edição de Tabela - https://www.youtube.com/watch?v=yvnuWmCl55g 1:29:56
 #=======================================================================
+
+
+        if livro: # Se for edição de contato
+            livro.codigo = codigo
+            livro.publicacao = publicacao
+            livro.autor = autor
+            livro.editora = editora
+            livro.genero = genero
+            livro.sinopse = sinopse
+            livro.titulo = titulo
+            livro.save()
+            return livro
+        else: # Se for novo contato
+            novo_livro = Livro(
+                codigo = codigo,
+                publicacao = publicacao,
+                autor = autor,
+                editora = editora,
+                genero = genero,
+                sinopse = sinopse,
+                titulo = titulo
+            )
+            novo_livro.save()
+            return novo_livro 

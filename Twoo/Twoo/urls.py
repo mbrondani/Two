@@ -17,7 +17,7 @@ from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
 
-from library.views import cadLivro, cadUsuario, cadFuncionario, emprestimo, teste
+from library.views import * 
 
 # Definiçao do mapeamento entre urls e o codigo que as manipula.
 urlpatterns = patterns('',
@@ -30,14 +30,19 @@ urlpatterns = patterns('',
     #                                URL's Library                                  #
     
     url(r'^$', 'library.views.home', name='nHome'),
+    url(r'^cadBiblioteca/$', cadBiblioteca, name='nCadLib'),
     url(r'^cadLivro/$', cadLivro, name='nCadLivro'),
     url(r'^cadUsuario/$', cadUsuario, name='nCadUsuario'),
-    url(r'^cadFuncionario/$', cadFuncionario, name='nCadFuncionario'),
-    url(r'^emprestimo$', emprestimo, name='nEmprestimo'),
+    url(r'^cadFuncionario/$', cadFuncionario, name='nCadFunc'),
+    url(r'^emprestimo$', cadEmprestimo, name='nEmprestimo'),
+    
+    url(r'^pesqLivro/$', pesqLivro, name='nPesqLivro'),
+    url(r'^pesqUsuario/$', pesqUsuario, name='nPesqUsuario'),
+    url(r'^pesqFuncionario/$', pesqFuncionario, name='nPesqFunc'),
+    
+    url(r'^relatorios/$', relatorios, name='nRelatorios'),
     
     #===============================================================================#
-    
-    url(r'^testetemplate/$', teste, name='nTeste'),
 )
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

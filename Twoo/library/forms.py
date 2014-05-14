@@ -5,8 +5,41 @@
 #===============================================================================
 
 from django import forms
-from library.models import Livro
+from library.models import *
 
+class FormBiblioteca(forms.ModelForm):
+    
+    class Meta:
+        model = Biblioteca
+    
+
+class FormLivro(forms.ModelForm):
+    
+    class Meta:
+        model = Livro
+        
+    
+class FormUsuario(forms.ModelForm):
+    
+    class Meta:
+        model = Usuario
+
+
+class FormFuncionario (forms.ModelForm):
+    
+    class Meta:
+        model = Funcionario
+        
+
+class FormEmprestimo (forms.ModelForm):
+    
+    class Meta:
+        model = Emprestimo
+
+# ------------------------------------------- End Forms
+
+"""
+Trabalhando sem forms.ModelForm
 
 class FormLivro(forms.Form):
     
@@ -39,9 +72,4 @@ class FormLivro(forms.Form):
         )
         novo_livro.save()
         return novo_livro 
-    
-    def clean_codigo(self):
-        codigo = self.cleaned_data.get('codigo')
-        if Livro.objects.filter(codigo = codigo ):
-            raise forms.ValidationError(u'Codigo Existente!')
-        return codigo
+"""

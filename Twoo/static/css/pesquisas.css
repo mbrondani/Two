@@ -51,7 +51,11 @@ body {
 
 .form-signin button {
 	margin-top: 350px;
-    margin-left: 900px;
+    margin-left: 0px;
+}
+
+.form-signin td {
+	padding: 25px;
 }
 
 textarea{
