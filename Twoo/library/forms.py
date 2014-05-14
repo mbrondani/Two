@@ -43,5 +43,5 @@ class FormLivro(forms.Form):
     def clean_codigo(self):
         codigo = self.cleaned_data.get('codigo')
         if Livro.objects.filter(codigo = codigo ):
-            raise forms.ValidationError('Codigo já cadastrado!')
+            raise forms.ValidationError(u'Codigo Existente!')
         return codigo

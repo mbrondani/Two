@@ -29,7 +29,7 @@ class Livro(models.Model):
     genero = models.CharField(max_length = 45)
     sinopse = models.CharField(max_length=150)
     titulo = models.CharField(max_length = 150)
-    biblioteca = models.ForeignKey(Biblioteca)
+    biblioteca = models.ForeignKey(Biblioteca, blank=True, null=True)
     
     def __unicode__(self):
         return (self.titulo)
