@@ -10,7 +10,7 @@ from library.models import Livro
 
 class FormLivro(forms.Form):
     
-    codigo = forms.IntegerField()
+    codigo = forms.CharField(max_length=10)
     publicacao = forms.IntegerField()
     autor = forms.CharField(max_length=80)
     editora = forms.CharField(max_length=45)
@@ -42,9 +42,6 @@ class FormLivro(forms.Form):
     
     def clean_codigo(self):
         codigo = self.cleaned_data.get('codigo')
-        if Livro.object.filter(email = email):
+        if Livro.objects.filter(codigo = codigo ):
             raise forms.ValidationError('Codigo já cadastrado!')
         return codigo
-        
-    
-# Como fazer um campo do form receber como valor a primary key do model Django ?!

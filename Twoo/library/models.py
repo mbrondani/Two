@@ -22,7 +22,7 @@ class Biblioteca(models.Model):
         return self.nome
 
 class Livro(models.Model):
-    codigo = models.IntegerField()
+    codigo = models.CharField(max_length = 10)
     publicacao = models.IntegerField()
     autor = models.CharField(max_length = 80)
     editora = models.CharField(max_length = 45)
@@ -32,29 +32,8 @@ class Livro(models.Model):
     biblioteca = models.ForeignKey(Biblioteca)
     
     def __unicode__(self):
-        return (self.titulo, self.autor)
+        return (self.titulo)
 
 #===============================================================================#
 # Criar outros Models
 #===============================================================================#
-
-'''
-
-class Usuario(models.Model):
-    pass
-
-class Funcionario(models.Model):
-    pass
-
-class Emprestimo(models.Model):
-    
-    codLivro = models.OneToOneField(Livro)
-    titulo = models.CharField(max_length = 80)
-    usuario = models.OneToOneField(Usuario)
-    funcionario = models.OneToOneField(Funcionario)
-    endereco = models.CharField(max_length = 80)
-    email = models.EmailField()
-    dt_saida = models.DateField()
-    dt_devolucao = models.DateField()
-
-'''
