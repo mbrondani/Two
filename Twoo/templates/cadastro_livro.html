@@ -23,12 +23,9 @@
 	
 	<textarea id="sinopse" name="sinopse" placeholder="Sinopse" rows = 10 cols = 63 required></textarea><hr>
 	
-	<select id="biblioteca" name="biblioteca">
-		<option value="" selected="selected"> ------------- </option>
-		<option value="{{ form.biblioteca }}" selected="selected"></option>
-	</select><hr>
+	{{form.biblioteca}}
 	
-	<br><p><button class="btn btn-lg btn-primary btn-block" type="submit">Salvar</button></p>
+	<hr><p><button class="btn btn-lg btn-primary btn-block" type="submit">Salvar</button></p>
   </form>
   
 </div>

@@ -39,7 +39,12 @@ def cadBiblioteca(request):
     else:
         form = FormBiblioteca()
     
-    return render(request, 'cadastro_library.html')
+    return render(request, 'cadastro_library.html',
+                {
+                    'form':form,                                 
+                }
+            )
+
 
 
 def cadLivro(request):
@@ -72,7 +77,12 @@ def cadUsuario(request):
     else:
         form = FormUsuario()
                         
-    return render(request, 'cadastro_usuario.html')
+    return render(request, 'cadastro_usuario.html',
+                {
+                    'form':form,                                 
+                }
+            )
+
 
 
 def cadFuncionario(request):
@@ -86,7 +96,12 @@ def cadFuncionario(request):
     else:
         form = FormFuncionario()
     
-    return render(request,'cadastro_funcionario.html')
+    return render(request,'cadastro_funcionario.html',
+                {
+                    'form':form,                                 
+                }
+            )
+
 
 def cadEmprestimo(request):
     
@@ -99,7 +114,12 @@ def cadEmprestimo(request):
     else:
         form = FormEmprestimo()
         
-    return render(request, 'emprestimos.html')
+    return render(request, 'emprestimos.html',
+                {
+                    'form':form,                                 
+                }
+            )
+
 
 
 def pesqLivro(request):

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
-from time import strftime
 
 #===============================================================================
 #                             Observações
@@ -31,7 +30,7 @@ class Livro(models.Model):
     genero = models.CharField(max_length = 45)
     sinopse = models.CharField(max_length=150)
     titulo = models.CharField(max_length = 150)
-    biblioteca = models.ForeignKey(Biblioteca, blank=True, null=True, on_delete=models.SET_NULL)
+    biblioteca = models.ForeignKey(Biblioteca, blank=True, null=False)
     
     def __unicode__(self):
         return "%s | %s " %(self.titulo, self.autor)
@@ -45,7 +44,7 @@ class Usuario(models.Model):
     telefone = models.CharField(max_length = 12)
     endereco = models.CharField(max_length = 200)
     email = models.EmailField(max_length = 75)
-    biblioteca = models.ForeignKey(Biblioteca, blank=True, null=True, on_delete=models.SET_NULL)
+    biblioteca = models.ForeignKey(Biblioteca, blank=True, null=False)
     
     def __unicode(self):
         return self.nome
@@ -60,11 +59,20 @@ class Funcionario(models.Model):
     endereco = models.CharField(max_length = 200)
     email = models.EmailField(max_length = 75)
     senha = models.EmailField(max_length = 15)
-    biblioteca = models.ForeignKey(Biblioteca, blank=True, null=True, on_delete=models.SET_NULL)
+    biblioteca = models.ForeignKey(Biblioteca, blank=True, null=False)
     
 
 class Emprestimo(models.Model):
-    pass    
+    
+    cod_livro = models.IntegerField(max_length = 10)
+    titulo = titulo = models.CharField(max_length = 150)
+    cod_usuario = models.IntegerField(max_length = 10)
+    cod_func = models.IntegerField(max_length = 10)
+    endereco = endereco = models.CharField(max_length = 200)
+    email = models.EmailField(max_length = 75)
+    pedido = models.DateField()
+    devolucao = models.DateField()
+    biblioteca = models.ForeignKey(Biblioteca, blank=True, null=False)
 
 #===============================================================================#
 # Criar outros Models
