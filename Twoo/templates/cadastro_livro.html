@@ -20,7 +20,13 @@
 	<input type="text" class="form-control" id="genero" name= "genero" placeholder="Genero" required>
 	<input type="text" class="form-control" id="publicacao" name= "publicacao" placeholder="Ano: 0000" required>
 	
-	<textarea id="sinopse" name="sinopse" placeholder="Sinopse" rows = 10 cols = 63 required></textarea><br>
+	
+	<textarea id="sinopse" name="sinopse" placeholder="Sinopse" rows = 10 cols = 63 required></textarea><hr>
+	
+	<select id="biblioteca" name="biblioteca">
+		<option value="" selected="selected"> ------------- </option>
+		<option value="{{ form.biblioteca }}" selected="selected"></option>
+	</select><hr>
 	
 	<br><p><button class="btn btn-lg btn-primary btn-block" type="submit">Salvar</button></p>
   </form>

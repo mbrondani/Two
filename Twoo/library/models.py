@@ -23,6 +23,7 @@ class Biblioteca(models.Model):
     
 
 class Livro(models.Model):
+    
     codigo = models.CharField(max_length = 10)
     publicacao = models.IntegerField()
     autor = models.CharField(max_length = 80)
@@ -30,7 +31,7 @@ class Livro(models.Model):
     genero = models.CharField(max_length = 45)
     sinopse = models.CharField(max_length=150)
     titulo = models.CharField(max_length = 150)
-    biblioteca = models.ForeignKey(Biblioteca, blank=True, null=True)
+    biblioteca = models.ForeignKey(Biblioteca, blank=True, null=True, on_delete=models.SET_NULL)
     
     def __unicode__(self):
         return "%s | %s " %(self.titulo, self.autor)
@@ -44,7 +45,7 @@ class Usuario(models.Model):
     telefone = models.CharField(max_length = 12)
     endereco = models.CharField(max_length = 200)
     email = models.EmailField(max_length = 75)
-    biblioteca = models.ForeignKey(Biblioteca, blank=True, null=True)
+    biblioteca = models.ForeignKey(Biblioteca, blank=True, null=True, on_delete=models.SET_NULL)
     
     def __unicode(self):
         return self.nome
@@ -59,7 +60,7 @@ class Funcionario(models.Model):
     endereco = models.CharField(max_length = 200)
     email = models.EmailField(max_length = 75)
     senha = models.EmailField(max_length = 15)
-    biblioteca = models.ForeignKey(Biblioteca, blank=True, null=True)
+    biblioteca = models.ForeignKey(Biblioteca, blank=True, null=True, on_delete=models.SET_NULL)
     
 
 class Emprestimo(models.Model):

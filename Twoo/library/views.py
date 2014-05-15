@@ -53,7 +53,12 @@ def cadLivro(request):
     else:
         form = FormLivro()
                         
-    return render(request, 'cadastro_livro.html')
+    return render(request, 'cadastro_livro.html',
+                {
+                    'form':form,                                 
+                }
+            )
+
 
     
 def cadUsuario(request):
@@ -82,7 +87,6 @@ def cadFuncionario(request):
         form = FormFuncionario()
     
     return render(request,'cadastro_funcionario.html')
-
 
 def cadEmprestimo(request):
     
