@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
 
+
+## --------------------------- IMPORTS
+
 from django.contrib import admin
+from library.models import *
 
-# Register your models here.
-# Registro dos Models
 
-# realiza import relativo
-from library.models import Biblioteca, Livro
+## ------------------------------------------- START REGISTROS
 
 
 admin.site.register(Biblioteca)
 admin.site.register(Livro)
+
+
+## ------------------------------------------- END REGISTROS

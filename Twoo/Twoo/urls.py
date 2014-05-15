@@ -1,14 +1,7 @@
 # -*- coding: utf-8 -*-
 
-"""
 
-As URLs para este projeto Django. Pense nisso como como uma 
-"tabela de conteudo" para o seu site em Django.
-
-Mapeamento entre URL's e funções View que devem ser chamadas 
-por essas URL's.
-
-"""
+## --------------------------- IMPORTS
 
 from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static 
@@ -19,13 +12,12 @@ admin.autodiscover()
 
 from library.views import * 
 
-# Definiçao do mapeamento entre urls e o codigo que as manipula.
+
+## ------------------------------------------- START URLS
+
+
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'Twoo.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-    # url(r'^admin/', include(admin.site.urls)),
-    
+
     #===============================================================================#
     #                                URL's Library                                  #
     
@@ -46,3 +38,25 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
+## ------------------------------------------- START URLS
+
+
+#===============================================================================#
+#
+#As URLs para este projeto Django. Pense nisso como como uma 
+#"tabela de conteudo" para o seu site em Django.
+#
+#Mapeamento entre URL's e funções View que devem ser chamadas 
+#por essas URL's.
+#
+#urlpatterns: Definiçao do mapeamento entre urls e o codigo que as manipula.
+#
+# Examples:
+# url(r'^$', 'Twoo.views.home', name='home'),
+# url(r'^blog/', include('blog.urls')),
+# url(r'^admin/', include(admin.site.urls)),
+#
+#
+#===============================================================================#

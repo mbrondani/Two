@@ -1,20 +1,7 @@
 # -*- coding: utf-8 -*-
 
-"""
 
-Produz o conteudo das paginas!
-
-
-Resumindo:
-
-1 - Uma requisição chega a /hello/.
-2 - Django determina o URLconf raiz analisando a configuração ROOT_URLCONF.
-3 - Django examina todas as URLpatterns no URLconf até encontrar a primeira que case com /hello/.
-4 - Se for casado, é chamado a função view associada.
-5 - A função view retorna um HttpResponse.
-6 - Django converte o HttpResponse para uma resposta HTTP, que resulta em uma página Web.
-
-"""
+## --------------------------- IMPORTS
 
 from django.shortcuts import render, render_to_response
 from django.http.response import HttpResponse, HttpResponseRedirect
@@ -23,9 +10,16 @@ from django.core.urlresolvers import reverse
 from library.models import *
 from library.forms import *
 
+
+## ------------------------------------------- START VIEWS
+
+
 def home(request):
     
     return render(request, 'index.html')
+
+
+## --------------------------- START CADASTROS
 
 
 def cadBiblioteca(request):
@@ -121,6 +115,10 @@ def cadEmprestimo(request):
             )
 
 
+## --------------------------- END CADASTROS
+
+## --------------------------- START PESQUISAS
+
 
 def pesqLivro(request):
     return render(request, 'pesquisa_livro.html')
@@ -134,18 +132,37 @@ def pesqFuncionario(request):
     return render(request, 'pesquisa_funcionario.html')
 
 
+## --------------------------- END CADASTROS
+
+## --------------------------- START FUNCIONALIDADES
+
+
 def relatorios(request):
     return render(request, 'relatorios.html')
 
 
+## --------------------------- START FUNCIONALIDADES
 
-"""
+## ------------------------------------------- END VIEWS
 
-Cada função view tem pelo menos um parametro chamado request.
-É o objeto que contém informação sobre a requisição Web atual que 
-ativou a view, e é uma instância da classe django.http.HttpRequest. 
 
-Nesse exemplo não é feito nada com request, mas de qualquer modo deve 
-ser o primeiro parametro da view.
-
-"""
+#===============================================================================
+#Produz o conteudo das paginas!
+#
+#Resumindo:
+#
+#1 - Uma requisição chega a /hello/.
+#2 - Django determina o URLconf raiz analisando a configuração ROOT_URLCONF.
+#3 - Django examina todas as URLpatterns no URLconf até encontrar a primeira que case com /hello/.
+#4 - Se for casado, é chamado a função view associada.
+#5 - A função view retorna um HttpResponse.
+#6 - Django converte o HttpResponse para uma resposta HTTP, que resulta em uma página Web.
+#
+#
+#Cada função view tem pelo menos um parametro chamado request.
+#É o objeto que contém informação sobre a requisição Web atual que 
+#ativou a view, e é uma instância da classe django.http.HttpRequest. 
+#
+#Nesse exemplo não é feito nada com request, mas de qualquer modo deve 
+#ser o primeiro parametro da view.
+#===============================================================================

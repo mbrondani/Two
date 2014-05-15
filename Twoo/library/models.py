@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 
+
+## --------------------------- IMPORTS
+
 from django.db import models
 
-#===============================================================================
-#                             Observações
-# querySet = Lista de Objetos
-# Field = Classe responsavel por validação
-# Widget = Representação do Field em HTML
-#
-#===============================================================================
+
+## ------------------------------------------- START MODELS
 
 
 class Biblioteca(models.Model):
@@ -74,6 +72,14 @@ class Emprestimo(models.Model):
     devolucao = models.DateField()
     biblioteca = models.ForeignKey(Biblioteca, blank=True, null=False)
 
-#===============================================================================#
-# Criar outros Models
-#===============================================================================#
+
+## ------------------------------------------- START MODELS
+
+
+#===============================================================================
+#                             Observações
+# querySet = Lista de Objetos
+# Field = Classe responsavel por validação
+# Widget = Representação do Field em HTML
+#
+#===============================================================================
