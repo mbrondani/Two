@@ -14,9 +14,12 @@ from library.forms import *
 ## ------------------------------------------- START VIEWS
 
 
-def home(request):
+def index(request):
     
     return render(request, 'index.html')
+
+def home(request):
+    return render(request, 'home.html')
 
 
 ## --------------------------- START CADASTROS
@@ -86,7 +89,7 @@ def cadFuncionario(request):
         form = FormFuncionario(request.POST)
         if form.is_valid():
             novo_funcionario = form.save()
-            HttpResponseRedirect('nCadFunc')
+            HttpResponseRedirect(reverse('nCadFunc'))
     else:
         form = FormFuncionario()
     
@@ -104,7 +107,7 @@ def cadEmprestimo(request):
         form = FormEmprestimo(request.POST)
         if form.is_valid():
             novo_emprestimo = form.save()
-            HttpResponseRedirect ('nEmprestimo')
+            HttpResponseRedirect(reverse('nEmprestimo'))
     else:
         form = FormEmprestimo()
         
@@ -141,6 +144,28 @@ def relatorios(request):
     return render(request, 'relatorios.html')
 
 
+def cadSistema(request):
+    
+    usuario = User.objects.all()
+    if request.method == "POST":
+        
+        username = request.REQUEST.get('username') 
+        email = request.REQUEST.get('email') 
+        password = request.REQUEST.get('password')
+        
+        usuario = User.objects.create_user(username, email, password)
+        usuario.save()
+        return HttpResponseRedirect(reverse('nIndex'))        
+    else:
+        return HttpResponseRedirect(reverse('nCadSistema'))
+        
+    return render(request, 'cadastro_sistema.html',
+                {
+                    
+                }
+            )
+
+
 ## --------------------------- START FUNCIONALIDADES
 
 ## ------------------------------------------- END VIEWS
@@ -165,4 +190,22 @@ def relatorios(request):
 #
 #Nesse exemplo não é feito nada com request, mas de qualquer modo deve 
 #ser o primeiro parametro da view.
+#===============================================================================
+
+#===============================================================================
+#
+# from django.contrib.auth.models import User
+# usuario = User.objects.create_user(username, email, password)
+# usuario.first_name = 'Rayane'
+# usuario.last_name = 'Paiva'
+# usuario.save()
+# usuario.is_superuser = True
+# usuario.set_password('novasenha')
+# usuario.save()
+#
+#===============================================================================
+#
+# usuario = User.objects.get(id=1)
+# profile = UserSystem.objects.create(user = usuario)
+# 
 #===============================================================================

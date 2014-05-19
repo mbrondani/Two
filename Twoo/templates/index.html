@@ -11,7 +11,9 @@
 
     <link rel="shortcut icon" href="">
 
-    <title>Chameleon</title>
+	{% block title %}
+	<title>Chameleon | Login</title>
+	{% endblock %}	
 	
     <link href="{% static 'css/bootstrap.min.css ' %}" rel="stylesheet">
     <link href="{% static 'css/signin.css ' %}" rel="stylesheet">
@@ -22,18 +24,22 @@
 
     <div class="container">
 
-      <form class="form-signin" role="form">
+      <form class="form-signin" role="form" action="." method="post"> {% csrf_token %}
+		{% block form %}
         <h2 class="form-signin-heading">Please sign in</h2>
         <input type="email" class="form-control" placeholder="Email" required autofocus>
         <input type="password" class="form-control" placeholder="Senha" required>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button><br><br>
-		
 		<label>
-          <br><p><a href="{% static 'cadastro_usuario.html ' %}">Cadastro de Usuarios do Sistema</a></p>
+          <br><p><a href="http://www.google.com">Cadastro de Usuarios do Sistema</a></p>
         </label>
+		{% endblock %}
       </form>
 
-    </div> 
+    </div>
+	<footer class="container">
+		<p><small>&copy; Copyright - Chameleon | Contact information: <a href="https://hotmail.com">rayanepaiiva@live.com</a></small></p>
+	</footer>	
   </body>
 </html>

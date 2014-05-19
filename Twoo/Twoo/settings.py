@@ -12,11 +12,6 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # ------------------------------------------------ #
 
-Definições/configurações para este projeto Django. 
-Dê uma olhada nele para ter uma idéia dos tipos de  
-configurações avaliadas, juntamente com os seus 
-valores padrões.
-
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -38,6 +33,7 @@ TEMPLATE_DEBUG = True
 
 # adicionado localhost
 ALLOWED_HOSTS = ['127.0.0.1']
+
 
 
 # Application definition
@@ -80,7 +76,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-BR'
 
 TIME_ZONE = 'UTC'
 
@@ -132,3 +128,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = '/media/'
 ########## END MEDIA CONFIGURATION
+
+AUTH_PROFILE_MODULE = 'library.UserSystem'

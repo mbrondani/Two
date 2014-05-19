@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+
+{% block title %}
+	<title>Chameleon | Cadastro de Usuarios</title>
+{% endblock %}
+
+{% block form %}
+	<h2 class="form-signin-heading">Acesso ao Sistema</h2>
+	<input type="text" class="form-control" id="username" name="username" placeholder="Usuario" required autofocus>
+	<input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+	<input type="password" class="form-control" id="password" name="password" placeholder="Senha" required>
+
+	<button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar</button>
+{% endblock %}

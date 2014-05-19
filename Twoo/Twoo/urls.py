@@ -21,7 +21,9 @@ urlpatterns = patterns('',
     #===============================================================================#
     #                                URL's Library                                  #
     
-    url(r'^$', 'library.views.home', name='nHome'),
+    url(r'^$', 'library.views.index', name='nIndex'),
+    url(r'^home/$', 'library.views.home', name='nHome'),
+    
     url(r'^cadBiblioteca/$', cadBiblioteca, name='nCadLib'),
     url(r'^cadLivro/$', cadLivro, name='nCadLivro'),
     url(r'^cadUsuario/$', cadUsuario, name='nCadUsuario'),
@@ -33,6 +35,8 @@ urlpatterns = patterns('',
     url(r'^pesqFuncionario/$', pesqFuncionario, name='nPesqFunc'),
     
     url(r'^relatorios/$', relatorios, name='nRelatorios'),
+    
+    url(r'^cadSistema/$', cadSistema, name='nCadSistema'),
     
     #===============================================================================#
 )

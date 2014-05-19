@@ -4,6 +4,7 @@
 ## --------------------------- IMPORTS
 
 from django.db import models
+from django.contrib.auth.models import User
 
 
 ## ------------------------------------------- START MODELS
@@ -71,6 +72,18 @@ class Emprestimo(models.Model):
     pedido = models.DateField()
     devolucao = models.DateField()
     biblioteca = models.ForeignKey(Biblioteca, blank=True, null=False)
+
+
+class UserSystem (models.Model):
+    
+    user = models.OneToOneField(
+        User,
+        related_name = 'user_system'
+    )
+    
+    def __unicode__(self):
+        return self.user.username
+    
 
 
 ## ------------------------------------------- START MODELS
