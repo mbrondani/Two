@@ -16,7 +16,36 @@ from library.forms import *
 
 def index(request):
     
+    email = request.REQUEST.get('email')
+    password = request.REQUEST.get('password')
+    if request.method == "POST":
+        if email.objects.filter(email=email):
+            pass
+    
     return render(request, 'index.html')
+
+
+def cadSistema(request):
+    
+    usuario = User.objects.all()
+    if request.method == "POST":
+        
+        username = request.REQUEST.get('username') 
+        email = request.REQUEST.get('email') 
+        password = request.REQUEST.get('password')
+        
+        usuario = User.objects.create_user(username, email, password)
+        usuario.save()
+        return HttpResponseRedirect(reverse('nIndex'))        
+    else:
+        HttpResponseRedirect(reverse('nCadSistema'))
+        
+    return render(request, 'cadastro_sistema.html',
+                {
+                    
+                }
+            )
+
 
 def home(request):
     return render(request, 'home.html')
@@ -142,28 +171,6 @@ def pesqFuncionario(request):
 
 def relatorios(request):
     return render(request, 'relatorios.html')
-
-
-def cadSistema(request):
-    
-    usuario = User.objects.all()
-    if request.method == "POST":
-        
-        username = request.REQUEST.get('username') 
-        email = request.REQUEST.get('email') 
-        password = request.REQUEST.get('password')
-        
-        usuario = User.objects.create_user(username, email, password)
-        usuario.save()
-        return HttpResponseRedirect(reverse('nIndex'))        
-    else:
-        return HttpResponseRedirect(reverse('nCadSistema'))
-        
-    return render(request, 'cadastro_sistema.html',
-                {
-                    
-                }
-            )
 
 
 ## --------------------------- START FUNCIONALIDADES

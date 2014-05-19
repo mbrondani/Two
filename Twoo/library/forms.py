@@ -10,6 +10,12 @@ from library.models import *
 ## ------------------------------------------- START FORMS
 
 
+class FormLogin (forms.ModelForm):
+    
+    class Meta:
+        model = UserSystem
+
+
 class FormBiblioteca (forms.ModelForm):
 
     class Meta:
@@ -38,12 +44,7 @@ class FormEmprestimo (forms.ModelForm):
 
     class Meta:
         model = Emprestimo
-
         
-class FormLogin (forms.ModelForm):
-    
-    class Meta:
-        model = UserSystem
 
 ## ------------------------------------------- END FORMS
 
