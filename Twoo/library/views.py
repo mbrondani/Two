@@ -183,6 +183,11 @@ def pesqFuncionario(request):
 def relatorios(request):
     return render(request, 'relatorios.html')
 
+@login_required
+def sairSistema(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('nIndex'))
+
 
 ## --------------------------- START FUNCIONALIDADES
 

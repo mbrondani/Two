@@ -37,6 +37,7 @@ urlpatterns = patterns('',
     url(r'^relatorios/$', relatorios, name='nRelatorios'),
     
     url(r'^cadSistema/$', cadSistema, name='nCadSistema'),
+    url(r'^\w+/logout/$', sairSistema, name='nLogout'),
     
     #===============================================================================#
 )
@@ -44,7 +45,7 @@ urlpatterns = patterns('',
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
-## ------------------------------------------- START URLS
+## ------------------------------------------- END URLS
 
 
 #===============================================================================#
