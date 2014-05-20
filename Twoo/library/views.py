@@ -6,6 +6,10 @@
 from django.shortcuts import render, render_to_response
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout 
+from django.contrib.auth.decorators import login_required
+
 
 from library.models import *
 from library.forms import *
@@ -16,29 +20,36 @@ from library.forms import *
 
 def index(request):
     
-    email = request.REQUEST.get('email')
+    next = request.GET.get('next', 'cadBiblioteca')
+    username = request.REQUEST.get('username')
     password = request.REQUEST.get('password')
-    if request.method == "POST":
-        if email.objects.filter(email=email):
-            pass
-    
-    return render(request, 'index.html')
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        if user.is_active:
+            login(request, user)
+            return HttpResponseRedirect(next)
+
+    return render(request, 'index.html',
+                {
+                    'next':next,
+                }
+            )
 
 
 def cadSistema(request):
     
-    usuario = User.objects.all()
+    novo_usuario = User.objects.all()
     if request.method == "POST":
         
         username = request.REQUEST.get('username') 
         email = request.REQUEST.get('email') 
         password = request.REQUEST.get('password')
         
-        usuario = User.objects.create_user(username, email, password)
-        usuario.save()
+        novo_usuario = User.objects.create_user(username, email, password)
+        novo_usuario.save()
         return HttpResponseRedirect(reverse('nIndex'))        
     else:
-        HttpResponseRedirect(reverse('nCadSistema'))
+        pass
         
     return render(request, 'cadastro_sistema.html',
                 {
@@ -46,14 +57,14 @@ def cadSistema(request):
                 }
             )
 
-
+@login_required
 def home(request):
     return render(request, 'home.html')
 
 
 ## --------------------------- START CADASTROS
 
-
+@login_required
 def cadBiblioteca(request):
     
     biblioteca = Biblioteca.objects.all() #Lista de bibliotecas | query
@@ -61,7 +72,7 @@ def cadBiblioteca(request):
         form = FormBiblioteca(request.POST)
         if form.is_valid(): # Processando o Formulario
             nova_lib = form.save()
-            HttpResponseRedirect(reverse('nCadLib'))
+            return HttpResponseRedirect(reverse('nCadLib'))
     else:
         form = FormBiblioteca()
     
@@ -72,7 +83,7 @@ def cadBiblioteca(request):
             )
 
 
-
+@login_required
 def cadLivro(request):
     
     livros = Livro.objects.all() 
@@ -80,7 +91,7 @@ def cadLivro(request):
         form = FormLivro(request.POST)
         if form.is_valid(): 
             novo_livro = form.save()
-            HttpResponseRedirect(reverse('nCadLivro'))
+            return HttpResponseRedirect(reverse('nCadLivro'))
     else:
         form = FormLivro()
                         
@@ -91,7 +102,7 @@ def cadLivro(request):
             )
 
 
-    
+@login_required
 def cadUsuario(request):
     
     usuarios = Usuario.objects.all() 
@@ -99,7 +110,7 @@ def cadUsuario(request):
         form = FormUsuario(request.POST)
         if form.is_valid(): 
             novo_usuario = form.save()
-            HttpResponseRedirect(reverse('nCadUsuario'))
+            return HttpResponseRedirect(reverse('nCadUsuario'))
     else:
         form = FormUsuario()
                         
@@ -110,7 +121,7 @@ def cadUsuario(request):
             )
 
 
-
+@login_required
 def cadFuncionario(request):
     
     funcionarios = Funcionario.objects.all()
@@ -118,7 +129,7 @@ def cadFuncionario(request):
         form = FormFuncionario(request.POST)
         if form.is_valid():
             novo_funcionario = form.save()
-            HttpResponseRedirect(reverse('nCadFunc'))
+            return HttpResponseRedirect(reverse('nCadFunc'))
     else:
         form = FormFuncionario()
     
@@ -128,7 +139,7 @@ def cadFuncionario(request):
                 }
             )
 
-
+@login_required
 def cadEmprestimo(request):
     
     emprestimos = Emprestimo.objects.all()
@@ -136,7 +147,7 @@ def cadEmprestimo(request):
         form = FormEmprestimo(request.POST)
         if form.is_valid():
             novo_emprestimo = form.save()
-            HttpResponseRedirect(reverse('nEmprestimo'))
+            return HttpResponseRedirect(reverse('nEmprestimo'))
     else:
         form = FormEmprestimo()
         
@@ -151,15 +162,15 @@ def cadEmprestimo(request):
 
 ## --------------------------- START PESQUISAS
 
-
+@login_required
 def pesqLivro(request):
     return render(request, 'pesquisa_livro.html')
 
-
+@login_required
 def pesqUsuario(request):
     return render(request, 'pesquisa_usuario.html')
 
-
+@login_required
 def pesqFuncionario(request):
     return render(request, 'pesquisa_funcionario.html')
 
@@ -168,7 +179,7 @@ def pesqFuncionario(request):
 
 ## --------------------------- START FUNCIONALIDADES
 
-
+@login_required
 def relatorios(request):
     return render(request, 'relatorios.html')
 

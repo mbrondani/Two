@@ -130,3 +130,5 @@ MEDIA_URL = '/media/'
 ########## END MEDIA CONFIGURATION
 
 AUTH_PROFILE_MODULE = 'library.UserSystem'
+
+LOGIN_URL = ''

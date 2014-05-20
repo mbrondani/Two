@@ -27,12 +27,13 @@
       <form class="form-signin" role="form" action="." method="post"> {% csrf_token %}
 		{% block form %}
         <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="email" class="form-control" id="email" name="email" placeholder="Email" required autofocus>
+        <input type="text" class="form-control" id="username" name="username" placeholder="Usuario" required autofocus>
+		<input type="hidden" name="next" id="next" value="{{ next }}">
         <input type="password" class="form-control" id="password" name="password" placeholder="Senha" required>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button><br><br>
 		<label>
-          <br><p><a href="http://www.google.com">Cadastro de Usuarios do Sistema</a></p>
+          <br><p><a href="http://localhost:8000/cadSistema">Cadastro de Usuarios do Sistema</a></p>
         </label>
 		{% endblock %}
       </form>
