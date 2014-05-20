@@ -24,11 +24,15 @@ def index(request):
     next = request.REQUEST.get('next', 'cadBiblioteca')
     username = request.REQUEST.get('username')
     password = request.REQUEST.get('password')
+    usuarios = User.objects.all()
     user = authenticate(username=username, password=password)
     if user is not None:
         if user.is_active:
             login(request, user)
-            return HttpResponseRedirect(next)
+            if len(usuarios)<1:
+                return HttpResponseRedirect(next)
+            else:
+                return HttpResponseRedirect(reverse('nHome'))
 
     return render(request, 'index.html',
                 {
@@ -70,7 +74,7 @@ def cadBiblioteca(request):
         form = FormBiblioteca(request.POST)
         if form.is_valid(): # Processando o Formulario
             nova_lib = form.save()
-            return HttpResponseRedirect(reverse('nCadLib'))
+            return HttpResponseRedirect(reverse('nHome'))
     else:
         form = FormBiblioteca()
     
