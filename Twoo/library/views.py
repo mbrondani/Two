@@ -13,6 +13,7 @@ from django.contrib.auth.decorators import login_required
 
 from library.models import *
 from library.forms import *
+from Twoo import settings
 
 
 ## ------------------------------------------- START VIEWS
@@ -51,11 +52,8 @@ def cadSistema(request):
     else:
         pass
         
-    return render(request, 'cadastro_sistema.html',
-                {
-                    
-                }
-            )
+    return render(request, 'cadastro_sistema.html')
+
 
 @login_required
 def home(request):
@@ -187,6 +185,9 @@ def relatorios(request):
 def sairSistema(request):
     logout(request)
     return HttpResponseRedirect(reverse('nIndex'))
+
+def acessoNegado(request):
+    return render_to_response('acesso_negado.html')
 
 
 ## --------------------------- START FUNCIONALIDADES

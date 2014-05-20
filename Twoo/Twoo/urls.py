@@ -24,6 +24,7 @@ urlpatterns = patterns('',
     url(r'^$', 'library.views.index', name='nIndex'),
     url(r'^home/$', 'library.views.home', name='nHome'),
     
+    url(r'^cadSistema/$', cadSistema, name='nCadSistema'),
     url(r'^cadBiblioteca/$', cadBiblioteca, name='nCadLib'),
     url(r'^cadLivro/$', cadLivro, name='nCadLivro'),
     url(r'^cadUsuario/$', cadUsuario, name='nCadUsuario'),
@@ -36,8 +37,8 @@ urlpatterns = patterns('',
     
     url(r'^relatorios/$', relatorios, name='nRelatorios'),
     
-    url(r'^cadSistema/$', cadSistema, name='nCadSistema'),
     url(r'^\w+/logout/$', sairSistema, name='nLogout'),
+    url(r'^acessoNegado/', acessoNegado, name='nAcessoNeg'),
     
     #===============================================================================#
 )

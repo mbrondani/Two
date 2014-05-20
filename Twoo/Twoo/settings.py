@@ -131,4 +131,6 @@ MEDIA_URL = '/media/'
 
 AUTH_PROFILE_MODULE = 'library.UserSystem'
 
-LOGIN_URL = ''
+LOGIN_URL = '/acessoNegado/'
+
+LOGIN_REDIRECT_URL = '/acessoNegado/'
