@@ -20,7 +20,7 @@ from library.forms import *
 
 def index(request):
     
-    next = request.GET.get('next', 'cadBiblioteca')
+    next = request.REQUEST.get('next', 'cadBiblioteca')
     username = request.REQUEST.get('username')
     password = request.REQUEST.get('password')
     user = authenticate(username=username, password=password)
