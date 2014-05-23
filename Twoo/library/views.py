@@ -13,7 +13,6 @@ from django.contrib.auth.decorators import login_required
 
 from library.models import *
 from library.forms import *
-from Twoo import settings
 
 
 ## ------------------------------------------- START VIEWS
@@ -21,15 +20,19 @@ from Twoo import settings
 
 def index(request):
     
+    site = 'http://localhost:8000'
     next = request.REQUEST.get('next', 'cadBiblioteca')
+    
     username = request.REQUEST.get('username')
     password = request.REQUEST.get('password')
-    usuarios = User.objects.all()
+    
+    bibliotecas = Biblioteca.objects.all()
     user = authenticate(username=username, password=password)
+    
     if user is not None:
         if user.is_active:
             login(request, user)
-            if len(usuarios)<1:
+            if len(bibliotecas)<1:
                 return HttpResponseRedirect(next)
             else:
                 return HttpResponseRedirect(reverse('nHome'))
@@ -37,6 +40,7 @@ def index(request):
     return render(request, 'index.html',
                 {
                     'next':next,
+                    'site':site,
                 }
             )
 
@@ -46,7 +50,7 @@ def cadSistema(request):
     novo_usuario = User.objects.all()
     if request.method == "POST":
         
-        username = request.REQUEST.get('username') 
+        username = request.REQUEST.get('username')
         email = request.REQUEST.get('email') 
         password = request.REQUEST.get('password')
         
@@ -65,6 +69,7 @@ def home(request):
 
 
 ## --------------------------- START CADASTROS
+
 
 @login_required
 def cadBiblioteca(request):
@@ -140,6 +145,7 @@ def cadFuncionario(request):
                     'form':form,                                 
                 }
             )
+    
 
 @login_required
 def cadEmprestimo(request):
@@ -164,37 +170,69 @@ def cadEmprestimo(request):
 
 ## --------------------------- START PESQUISAS
 
+
 @login_required
 def pesqLivro(request):
     return render(request, 'pesquisa_livro.html')
 
+
 @login_required
 def pesqUsuario(request):
     return render(request, 'pesquisa_usuario.html')
+
 
 @login_required
 def pesqFuncionario(request):
     return render(request, 'pesquisa_funcionario.html')
 
 
-## --------------------------- END CADASTROS
+## --------------------------- END PESQUISAS
+
+
+## --------------------------- START DELETE
+
+@login_required
+def delLivro(request):
+    pass
+
+
+@login_required
+def delUsuario(request):
+    pass
+
+
+@login_required
+def delFuncionario(request):
+    pass
+
+
+## --------------------------- END DELETE
+
 
 ## --------------------------- START FUNCIONALIDADES
+
+
+@login_required
+def statusEmprestimo(request):
+    pass
+
 
 @login_required
 def relatorios(request):
     return render(request, 'relatorios.html')
+
 
 @login_required
 def sairSistema(request):
     logout(request)
     return HttpResponseRedirect(reverse('nIndex'))
 
+
 def acessoNegado(request):
     return render_to_response('acesso_negado.html')
 
 
-## --------------------------- START FUNCIONALIDADES
+## --------------------------- END FUNCIONALIDADES
 
 ## ------------------------------------------- END VIEWS
 
@@ -211,6 +249,7 @@ def acessoNegado(request):
 #5 - A função view retorna um HttpResponse.
 #6 - Django converte o HttpResponse para uma resposta HTTP, que resulta em uma página Web.
 #
+# Controllers são chamados de views no Django
 #
 #Cada função view tem pelo menos um parametro chamado request.
 #É o objeto que contém informação sobre a requisição Web atual que 

@@ -57,7 +57,6 @@ class Funcionario(models.Model):
     cpf = models.CharField(max_length = 14)
     endereco = models.CharField(max_length = 200)
     email = models.EmailField(max_length = 75)
-    senha = models.EmailField(max_length = 15)
     biblioteca = models.ForeignKey(Biblioteca, blank=True, null=False)
     
 
