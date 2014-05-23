@@ -173,7 +173,19 @@ def cadEmprestimo(request):
 
 @login_required
 def pesqLivro(request):
-    return render(request, 'pesquisa_livro.html')
+    
+    pesquisa = request.REQUEST.get('pesquisa')
+    livros = Livros.objects.all()
+    oLivro = None
+    
+    if request.METHOD == "POST":
+        pass
+             
+    return render(request, 'pesquisa_livro.html',
+                {
+                                     
+                }
+            )
 
 
 @login_required
