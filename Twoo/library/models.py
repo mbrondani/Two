@@ -29,6 +29,7 @@ class Livro(models.Model):
     genero = models.CharField(max_length = 45)
     sinopse = models.CharField(max_length=150)
     titulo = models.CharField(max_length = 150)
+
     biblioteca = models.ForeignKey(Biblioteca, blank=True, null=False)
 
     def __unicode__(self):
@@ -37,6 +38,7 @@ class Livro(models.Model):
 
 class Pessoa(models.Model):
 
+    codigo = models.CharField('Codigo', max_length = 10)
     nome = models.CharField('Nome', max_length = 100)
     d_nasc = models.CharField('Data de Nascimento', max_length = 10)
     cpf = models.CharField('CPF',max_length = 14)
@@ -44,6 +46,7 @@ class Pessoa(models.Model):
     endereco = models.CharField('Endereço',max_length = 200)
     email = models.EmailField('E-mail',max_length = 75)
     tipo = models.CharField('Tipo',max_length = 100)
+
     biblioteca = models.ForeignKey(Biblioteca, blank=True, null=False)
 
     def __unicode(self):
@@ -52,14 +55,15 @@ class Pessoa(models.Model):
 
 class Emprestimo(models.Model):
 
-    cod_livro = models.IntegerField('Codigo do Livro (ID)', max_length = 10)
+    cod_livro = models.CharField('Codigo do Livro (ID)', max_length = 10)
     titulo = titulo = models.CharField('Titulo', max_length = 150)
-    cod_usuario = models.IntegerField('Codigo do Responsavel', max_length = 10)
-    cod_func = models.IntegerField('Codigo do Funcionario', max_length = 10)
+    cod_usuario = models.CharField('Codigo do Responsavel', max_length = 10)
+    cod_func = models.CharField('Codigo do Funcionario', max_length = 10)
     endereco = endereco = models.CharField('Endereço Responsavel', max_length = 200)
     email = models.EmailField('E-mail Responsavel', max_length = 75)
     pedido = models.DateField('Data do Pedido', )
     devolucao = models.DateField('Data da Devolução', )
+
     biblioteca = models.ForeignKey(Biblioteca, blank=True, null=False)
 
 

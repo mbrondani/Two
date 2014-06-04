@@ -21,16 +21,16 @@ urlpatterns = patterns('',
     url(r'^$', 'library.views.index', name='nIndex'),
     url(r'^home/$', 'library.views.home', name='nHome'),
 
-    url(r'^cadSistema/$', 'library.views.cadSistema', name='nCadSistema'),
-    url(r'^cadBiblioteca/$', 'library.views.cadBiblioteca', name='nCadLib'),
+    url(r'^cadastro/sistema/$', 'library.views.cadSistema', name='nCadSistema'),
+    url(r'^cadastro/biblioteca/$', 'library.views.cadBiblioteca', name='nCadLib'),
 
-    url(r'^cadLivro/$', 'library.views.cadLivro', name='nCadLivro'),
-    url(r'^cadPessoa/$', 'library.views.cadPessoa', name='nCadUsuario'),
+    url(r'^cadastro/livro/$', 'library.views.cadLivro', name='nCadLivro'),
+    url(r'^cadastro/pessoa/$', 'library.views.cadPessoa', name='nCadUsuario'),
 
-    url(r'^emprestimo$', 'library.views.cadEmprestimo', name='nEmprestimo'),
+    url(r'^cadastro/emprestimo$', 'library.views.cadEmprestimo', name='nEmprestimo'),
 
-    url(r'^pesqLivro/$', 'library.views.pesqLivro', name='nPesqLivro'),
-    url(r'^pesqUsuario/$', 'library.views.pesqUsuario', name='nPesqUsuario'),
+    url(r'^pesquisa/livro/$', 'library.views.pesqLivro', name='nPesqLivro'),
+    url(r'^pesquisa/usuario/$', 'library.views.pesqUsuario', name='nPesqUsuario'),
 
     url(r'^relatorios/$', 'library.views.relatorios', name='nRelatorios'),
 
@@ -51,10 +51,10 @@ urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 #As URLs para este projeto Django. Pense nisso como como uma
 #"tabela de conteudo" para o seu site em Django.
 #
-#Mapeamento entre URL's e fun��es View que devem ser chamadas
+#Mapeamento entre URL's e funcoes View que devem ser chamadas
 #por essas URL's.
 #
-#urlpatterns: Defini�ao do mapeamento entre urls e o codigo que as manipula.
+#urlpatterns: Definicao do mapeamento entre urls e o codigo que as manipula.
 #
 # Examples:
 # url(r'^$', 'Twoo.views.home', name='home'),
