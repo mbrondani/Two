@@ -18,10 +18,10 @@ class Biblioteca(models.Model):
 
     def __unicode__(self):
         return self.nome
-    
+
 
 class Livro(models.Model):
-    
+
     codigo = models.CharField(max_length = 10)
     publicacao = models.IntegerField()
     autor = models.CharField(max_length = 80)
@@ -30,68 +30,58 @@ class Livro(models.Model):
     sinopse = models.CharField(max_length=150)
     titulo = models.CharField(max_length = 150)
     biblioteca = models.ForeignKey(Biblioteca, blank=True, null=False)
-    
+
     def __unicode__(self):
         return "%s | %s " %(self.titulo, self.autor)
-    
-    
-class Usuario(models.Model):
-    
-    nome = models.CharField(max_length = 100)
-    d_nasc = models.CharField(max_length = 10)
-    cpf = models.CharField(max_length = 14)
-    telefone = models.CharField(max_length = 12)
-    endereco = models.CharField(max_length = 200)
-    email = models.EmailField(max_length = 75)
+
+
+class Pessoa(models.Model):
+
+    nome = models.CharField('Nome', max_length = 100)
+    d_nasc = models.CharField('Data de Nascimento', max_length = 10)
+    cpf = models.CharField('CPF',max_length = 14)
+    telefone = models.CharField('Telefone',max_length = 12)
+    endereco = models.CharField('EndereÃ§o',max_length = 200)
+    email = models.EmailField('E-mail',max_length = 75)
+    tipo = models.CharField('Tipo',max_length = 100)
     biblioteca = models.ForeignKey(Biblioteca, blank=True, null=False)
-    
+
     def __unicode(self):
         return self.nome
-    
-    
-class Funcionario(models.Model):
-    
-    cargo = models.CharField(max_length = 100)
-    nome = models.CharField(max_length = 100)
-    d_nasc = models.CharField(max_length = 10)
-    cpf = models.CharField(max_length = 14)
-    endereco = models.CharField(max_length = 200)
-    email = models.EmailField(max_length = 75)
-    biblioteca = models.ForeignKey(Biblioteca, blank=True, null=False)
-    
+
 
 class Emprestimo(models.Model):
-    
-    cod_livro = models.IntegerField(max_length = 10)
-    titulo = titulo = models.CharField(max_length = 150)
-    cod_usuario = models.IntegerField(max_length = 10)
-    cod_func = models.IntegerField(max_length = 10)
-    endereco = endereco = models.CharField(max_length = 200)
-    email = models.EmailField(max_length = 75)
-    pedido = models.DateField()
-    devolucao = models.DateField()
+
+    cod_livro = models.IntegerField('Codigo do Livro (ID)', max_length = 10)
+    titulo = titulo = models.CharField('Titulo', max_length = 150)
+    cod_usuario = models.IntegerField('Codigo do Responsavel', max_length = 10)
+    cod_func = models.IntegerField('Codigo do Funcionario', max_length = 10)
+    endereco = endereco = models.CharField('EndereÃ§o Responsavel', max_length = 200)
+    email = models.EmailField('E-mail Responsavel', max_length = 75)
+    pedido = models.DateField('Data do Pedido', )
+    devolucao = models.DateField('Data da DevoluÃ§Ã£o', )
     biblioteca = models.ForeignKey(Biblioteca, blank=True, null=False)
 
 
 class UserSystem (models.Model):
-    
+
     user = models.OneToOneField(
         User,
         related_name = 'user_system'
     )
-    
+
     def __unicode__(self):
         return self.user.username
-    
+
 
 
 ## ------------------------------------------- START MODELS
 
 
 #===============================================================================
-#                             Observações
+#                             Observaï¿½ï¿½es
 # querySet = Lista de Objetos
-# Field = Classe responsavel por validação
-# Widget = Representação do Field em HTML
+# Field = Classe responsavel por validaï¿½ï¿½o
+# Widget = Representaï¿½ï¿½o do Field em HTML
 #
 #===============================================================================

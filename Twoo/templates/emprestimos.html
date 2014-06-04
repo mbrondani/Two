@@ -12,17 +12,8 @@
 
   <form class="form-signin" role="form" action="." method="post"> {% csrf_token %}
 	<h2 class="form-signin-heading">Formulario</h2>
-	
-	<input type="text" class="form-control" id="cod_livro" name = "cod_livro" placeholder="Codigo Livro" required autofocus/>
-	<input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo" disabled required />
-	<input type="text" class="form-control" id="cod_usuario" name="cod_usuario" placeholder="Usuario" required/>
-	<input type="text" class="form-control" id="cod_func" name="cod_func" placeholder="Funcionario" required/>
-	<input type="text" class="form-control" id="endereco" name="endereco" placeholder="Endereço" disabled required/>
-	<input type="email" class="form-control" id="email" name="email" placeholder="email@email.com" required/>
-	<input type="date" class="form-control" id="pedido" name="pedido" placeholder="00/00/0000" disabled required/>
-	<input type="date" class="form-control" id="devolucao" name="devolucao" placeholder="00/00/0000" disabled required/><hr>
-	
-	{{form.biblioteca}}
+		
+	{{form.as_p}}
 
 	<hr><p><button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar</button></p>
   </form>

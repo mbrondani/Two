@@ -13,20 +13,33 @@
   <form class="form-signin" role="form" action="." method="post"> {% csrf_token %}
 	<h2 class="form-signin-heading">Pesquisa</h2>
 	
-	<input type="text" class="form-control" id="pesquisa" name= "pesquisa" placeholder="Pesquisa" required autofocus/>
+	<input type="text" class="form-control" id="pesquisa" name= "pesquisa" placeholder="Pesquisa" required autofocus/>	
+	<button class="btn btn-lg btn-primary" type="submit" id="pesquisar" name="pesquisar">Buscar</button>
 	
-	<label class="radio">	<input type="radio" id="rdTitulo" name="radio" value="option1"> Por Titulo</label>
-	<label class="radio">	<input type="radio" id="rdAutor" name="radio" value="option2" > Por Autor</label>
-	<label class="radio">	<input type="radio" id="rdGenero" name="radio" value="option3"> Por Genero</label>
-	
-	<table>
-		<tr>
-			<td><button class="btn btn-lg btn-primary" type="submit" id="pesquisar" name="pesquisar">Buscar</button></td>
-			<td><button class="btn btn-lg btn-primary" type="submit" id="editar" name="editar">Editar</button></td>
-			<td><button class="btn btn-lg btn-primary" type="submit" id="deletar" name="deletar">Deletar</button></td>
-		</tr>
-	<table>
-	
+	{% if oLivro %}
+		<table class="resultado">
+			<thead>
+				<tr>
+					<th>Codigo(ID)</th>
+					<th>Titulo</th>
+					<th>Autor</th>
+					<th>Genero</th>
+					<th>Disponivel</th>
+				</tr>	
+			</thead>
+			<tbody>
+				<tr>
+				{% for livro in oLivro %}
+					<td>{{livro.pk}}</td>
+					<td>{{livro.titulo}}</td>
+					<td>{{livro.autor}}</td>
+					<td>{{livro.genero}}</td>
+					<td>{{livro.disponivel}}</td>
+				{% endfor %}
+				</tr>
+			</tbody>
+		</table>
+	{% endif %}	
   </form>
 </div>
 {% endblock %}

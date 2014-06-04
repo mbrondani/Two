@@ -7,7 +7,7 @@ from django.shortcuts import render, render_to_response
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout 
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 
@@ -19,47 +19,42 @@ from library.forms import *
 
 
 def index(request):
-    
-    site = 'http://localhost:8000'
+
     next = request.REQUEST.get('next', 'cadBiblioteca')
-    
+
     username = request.REQUEST.get('username')
     password = request.REQUEST.get('password')
-    
+
     bibliotecas = Biblioteca.objects.all()
     user = authenticate(username=username, password=password)
-    
-    if user is not None:
-        if user.is_active:
-            login(request, user)
-            if len(bibliotecas)<1:
-                return HttpResponseRedirect(next)
-            else:
-                return HttpResponseRedirect(reverse('nHome'))
+
+    if user is not None and user.is_active:
+        login(request, user)
+        if len(bibliotecas)<1:
+            return HttpResponseRedirect(next)
+        else:
+            return HttpResponseRedirect(reverse('nHome'))
 
     return render(request, 'index.html',
                 {
                     'next':next,
-                    'site':site,
                 }
             )
 
 
 def cadSistema(request):
-    
+
     novo_usuario = User.objects.all()
     if request.method == "POST":
-        
         username = request.REQUEST.get('username')
-        email = request.REQUEST.get('email') 
+        email = request.REQUEST.get('email')
         password = request.REQUEST.get('password')
-        
         novo_usuario = User.objects.create_user(username, email, password)
         novo_usuario.save()
-        return HttpResponseRedirect(reverse('nIndex'))        
+        return HttpResponseRedirect(reverse('nIndex'))
     else:
         pass
-        
+
     return render(request, 'cadastro_sistema.html')
 
 
@@ -73,95 +68,72 @@ def home(request):
 
 @login_required
 def cadBiblioteca(request):
-    
-    biblioteca = Biblioteca.objects.all() #Lista de bibliotecas | query
-    if request.method == "POST":
-        form = FormBiblioteca(request.POST)
-        if form.is_valid(): # Processando o Formulario
-            nova_lib = form.save()
-            return HttpResponseRedirect(reverse('nHome'))
+
+    biblioteca = Biblioteca.objects.all()
+    form = FormBiblioteca(request.POST)
+    if request.method == "POST" and form.is_valid():
+        nova_lib = form.save()
+        return HttpResponseRedirect(reverse('nHome'))
     else:
         form = FormBiblioteca()
-    
+
     return render(request, 'cadastro_library.html',
                 {
-                    'form':form,                                 
+                    'form':form,
                 }
             )
 
 
 @login_required
 def cadLivro(request):
-    
-    livros = Livro.objects.all() 
-    if request.method == "POST":
-        form = FormLivro(request.POST)
-        if form.is_valid(): 
-            novo_livro = form.save()
-            return HttpResponseRedirect(reverse('nCadLivro'))
+
+    livros = Livro.objects.all()
+    form = FormLivro(request.POST)
+    if request.method == "POST" and form.is_valid():
+        novo_livro = form.save()
+        return HttpResponseRedirect(reverse('nCadLivro'))
     else:
         form = FormLivro()
-                        
+
     return render(request, 'cadastro_livro.html',
                 {
-                    'form':form,                                 
+                    'form':form,
                 }
             )
 
 
 @login_required
-def cadUsuario(request):
-    
-    usuarios = Usuario.objects.all() 
-    if request.method == "POST":
-        form = FormUsuario(request.POST)
-        if form.is_valid(): 
-            novo_usuario = form.save()
-            return HttpResponseRedirect(reverse('nCadUsuario'))
+def cadPessoa(request):
+
+    usuarios = Pessoa.objects.all()
+    form = FormPessoa(request.POST)
+    if request.method == "POST" and form.is_valid():
+        novo_usuario = form.save()
+        return HttpResponseRedirect(reverse('nCadUsuario'))
     else:
-        form = FormUsuario()
-                        
+        form = FormPessoa()
+
     return render(request, 'cadastro_usuario.html',
                 {
-                    'form':form,                                 
+                    'form':form,
                 }
             )
 
-
-@login_required
-def cadFuncionario(request):
-    
-    funcionarios = Funcionario.objects.all()
-    if request.method == "POST":
-        form = FormFuncionario(request.POST)
-        if form.is_valid():
-            novo_funcionario = form.save()
-            return HttpResponseRedirect(reverse('nCadFunc'))
-    else:
-        form = FormFuncionario()
-    
-    return render(request,'cadastro_funcionario.html',
-                {
-                    'form':form,                                 
-                }
-            )
-    
 
 @login_required
 def cadEmprestimo(request):
-    
+
     emprestimos = Emprestimo.objects.all()
-    if request.method == "POST":
-        form = FormEmprestimo(request.POST)
-        if form.is_valid():
-            novo_emprestimo = form.save()
-            return HttpResponseRedirect(reverse('nEmprestimo'))
+    form = FormEmprestimo(request.POST)
+    if request.method == "POST" and form.is_valid():
+        novo_emprestimo = form.save()
+        return HttpResponseRedirect(reverse('nEmprestimo'))
     else:
         form = FormEmprestimo()
-        
+
     return render(request, 'emprestimos.html',
                 {
-                    'form':form,                                 
+                    'form':form,
                 }
             )
 
@@ -173,29 +145,28 @@ def cadEmprestimo(request):
 
 @login_required
 def pesqLivro(request):
-    
+
     pesquisa = request.REQUEST.get('pesquisa')
-    livros = Livros.objects.all()
-    oLivro = None
-    
-    if request.METHOD == "POST":
-        pass
-             
+    oLivro = Livro.objects.filter(codigo = pesquisa)
+
     return render(request, 'pesquisa_livro.html',
                 {
-                                     
+                    'oLivro': oLivro,
                 }
             )
 
 
 @login_required
 def pesqUsuario(request):
-    return render(request, 'pesquisa_usuario.html')
 
+    pesquisa = request.REQUEST.get('pesquisa')
+    oPessoa = Pessoa.objects.filter(pk = pesquisa)
 
-@login_required
-def pesqFuncionario(request):
-    return render(request, 'pesquisa_funcionario.html')
+    return render(request, 'pesquisa_usuario.html',
+                {
+                    'oPessoa': oPessoa,
+                }
+            )
 
 
 ## --------------------------- END PESQUISAS
@@ -205,20 +176,77 @@ def pesqFuncionario(request):
 
 @login_required
 def delLivro(request):
-    pass
+
+    codigo = request.REQUEST.get('codigo')
+    oLivro = Livro.objects.get(pk = codigo)
+
+    if request.method == "POST" and oLivro is not None:
+        oLivro.delete()
+        return HttpResponseRedirect('')
+
+    return render(request, 'template.html')
 
 
 @login_required
-def delUsuario(request):
-    pass
+def delPessoa(request):
 
+    codigo = request.REQUEST.get('codigo')
+    oPessoa = Pessoa.objects.get(pk = codigo)
 
-@login_required
-def delFuncionario(request):
-    pass
+    if request.method == "POST" and oPessoa is not None:
+        oPessoa.delete()
+        return HttpResponseRedirect('')
+
+    return render(request, 'template.html')
 
 
 ## --------------------------- END DELETE
+
+
+## --------------------------- START UPDATES
+
+def upLivro(request):
+
+    codigo = request.REQUEST.get('codigo')
+    oLivro = Livro.objects.get(pk=codigo)
+
+    if request.method == 'POST':
+        form = FormLivro(request.POST, instance=oLivro)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('')
+    else:
+        form = FormLivro(instance=oLivro)
+
+    return render(request,'template.html',
+                {
+                    'form':form,
+                    'codigo':codigo,
+                }
+            )
+
+def upPessoa(request):
+
+    codigo = request.REQUEST.get('codigo')
+    oPessoa = Pessoa.objects.get(pk=codigo)
+
+    if request.method == 'POST':
+        form = FormPessoa(request.POST, instance=oPessoa)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('')
+    else:
+        form = FormPessoa(instance=oPessoa)
+
+    return render(request,'template.html',
+                {
+                    'form':form,
+                    'codigo':codigo,
+                }
+            )
+
+
+## --------------------------- END UPDATES
 
 
 ## --------------------------- START FUNCIONALIDADES
@@ -254,20 +282,20 @@ def acessoNegado(request):
 #
 #Resumindo:
 #
-#1 - Uma requisição chega a /hello/.
-#2 - Django determina o URLconf raiz analisando a configuração ROOT_URLCONF.
-#3 - Django examina todas as URLpatterns no URLconf até encontrar a primeira que case com /hello/.
-#4 - Se for casado, é chamado a função view associada.
-#5 - A função view retorna um HttpResponse.
-#6 - Django converte o HttpResponse para uma resposta HTTP, que resulta em uma página Web.
+#1 - Uma requisiÃ£o chega a /hello/.
+#2 - Django determina o URLconf raiz analisando a configuraï¿½ï¿½o ROOT_URLCONF.
+#3 - Django examina todas as URLpatterns no URLconf atï¿½ encontrar a primeira que case com /hello/.
+#4 - Se for casado, ï¿½ chamado a funï¿½ï¿½o view associada.
+#5 - A funï¿½ï¿½o view retorna um HttpResponse.
+#6 - Django converte o HttpResponse para uma resposta HTTP, que resulta em uma pï¿½gina Web.
 #
-# Controllers são chamados de views no Django
+# Controllers sÃ£o chamados de views no Django
 #
-#Cada função view tem pelo menos um parametro chamado request.
-#É o objeto que contém informação sobre a requisição Web atual que 
-#ativou a view, e é uma instância da classe django.http.HttpRequest. 
+#Cada funcao view tem pelo menos um parametro chamado request.
+#E o objeto que contem informacao sobre a requisicao Web atual que
+#ativou a view, e ï¿½ uma instancia da classe django.http.HttpRequest.
 #
-#Nesse exemplo não é feito nada com request, mas de qualquer modo deve 
+#Nesse exemplo nï¿½o ï¿½ feito nada com request, mas de qualquer modo deve
 #ser o primeiro parametro da view.
 #===============================================================================
 
@@ -286,5 +314,5 @@ def acessoNegado(request):
 #
 # usuario = User.objects.get(id=1)
 # profile = UserSystem.objects.create(user = usuario)
-# 
+#
 #===============================================================================

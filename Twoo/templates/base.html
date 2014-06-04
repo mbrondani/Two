@@ -30,29 +30,27 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#home">Library Chameleon</a>
+          <a class="navbar-brand" href="{% url 'library.views.home' %}">Library Chameleon</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#home">Home</a></li>
-            <li><a href="#emprestimo">Emprestimo</a></li>
-            <li><a href="#relatorios">Relatórios</a></li>
+            <li><a href="{% url 'library.views.cadEmprestimo' %}">Emprestimo</a></li>
+            <li><a href="{% url 'library.views.relatorios' %}">Relatórios</a></li>
 			
 			<li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Serviços <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#cadLivro">Cadastrar Livros</a></li>
-                <li><a href="#cadUsuario">Cadastrar Usuários</a></li>
-				<li><a href="#cadFuncionario">Cadastrar Funcionários</a></li>
+				<li class="dropdown-header">Cadastros</li>
+                <li><a href="{% url 'library.views.cadLivro' %}">Livros</a></li>
+                <li><a href="{% url 'library.views.cadPessoa' %}">Usuários</a></li>
                 <li class="divider"></li>
-                <li class="dropdown-header">Pesquisa</li>
-                <li><a href="#pesqLivro">Livro</a></li>
-                <li><a href="#pesqUsuario">Usuário</a></li>
-				<li><a href="#pesqFuncionario">Funcionário</a></li>
+                <li class="dropdown-header">Pesquisas</li>
+                <li><a href="{% url 'library.views.pesqLivro' %}">Livros</a></li>
+                <li><a href="{% url 'library.views.pesqUsuario' %}">Usuários</a></li>
               </ul>
 			</li>
+			<li><a href="{% url 'library.views.sairSistema' %}">Logout</a></li>
           </ul>
-		  <button type="submit" id="sair" name="sair" class="btn btn-success ">Sair</button>
         </div>
       </div>
 	</div>
@@ -62,7 +60,7 @@
 	{% endblock %}
 	<hr>
 	<footer class="container">
-		<p><small>&copy; Copyright - Chameleon | Contact Information: <a href="https://hotmail.com">rayanepaiiva@live.com</a></small></p>
+		<p><small>&copy; Copyright - Chameleon | Contact Information: <a href="">rayanepaiiva@live.com</a></small></p>
 	</footer>
 
 	

@@ -13,16 +13,9 @@
   <form class="form-signin" role="form" action="." method="post"> {% csrf_token %}
 	<h2 class="form-signin-heading">Cadastro</h2>
 	
-	<input type="text" class="form-control" id="nome" name= "nome" placeholder="Nome" required autofocus/>
-	<input type="date" class="form-control" id="d_nasc" name= "d_nasc" placeholder="00/00/0000" required/>
-	<input type="text" class="form-control" id="cpf" name= "cpf" placeholder="111.111.111-00" required/>
-	<input type="text" class="form-control" id="telefone" name= "telefone" placeholder="00 00000-0000" required/>
-	<input type="text" class="form-control" id="endereco" name= "endereco" placeholder="Endereço" required/>
-	<input type="email" class="form-control" id="email" name= "email" placeholder="email@email.com" required/><hr>
-
-	{{form.biblioteca}}	
+	{{form.as_p}}
 	
-	<hr><p><button class="btn btn-lg btn-primary btn-block" type="submit">Salvar</button></p>
+	<hr><p><button class="btn btn-lg btn-primary" type="submit">Salvar</button></p>
   </form>
 </div>
 {% endblock %}

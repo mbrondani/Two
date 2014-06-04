@@ -13,19 +13,33 @@
   <form class="form-signin" role="form" action="." method="post"> {% csrf_token %}
 	<h2 class="form-signin-heading">Pesquisa</h2>
 	
-	<input type="text" class="form-control" id="key" name= "key" placeholder="Pesquisa" required autofocus/>
+	<input type="text" class="form-control" id="pesquisa" name= "pesquisa" placeholder="Pesquisa" required autofocus/>
+	<button class="btn btn-lg btn-primary" type="submit" id="pesquisar" name="pesquisar">Buscar</button>
 	
-	<label class="radio">	<input type="radio" id="rdCPF" name="radio" value="option1"> Por CPF</label>
-	<label class="radio">	<input type="radio" id="rdNome" name="radio" value="option2" > Por Nome</label>
-	<label class="radio">	<input type="radio" id="rdCOdigo" name="radio" value="option3"> Por Codigo</label>
-	
-	<table>
-		<tr>
-			<td><button class="btn btn-lg btn-primary" type="submit" id="pesquisar" name="pesquisar">Buscar</button></td>
-			<td><button class="btn btn-lg btn-primary" type="submit" id="editar" name="editar">Editar</button></td>
-			<td><button class="btn btn-lg btn-primary" type="submit" id="deletar" name="deletar">Deletar</button></td>
-		</tr>
-	<table>
+	{% if oPessoa %}
+		<table class="resultado">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Telefone</th>
+					<th>E-mail</th>
+					<th>Endereço</th>
+					<th>Tipo</th>
+				</tr>	
+			</thead>
+			<tbody>
+				<tr>
+				{% for pessoa in oPessoa %}
+					<td>{{pessoa.nome}}</td>
+					<td>{{pessoa.telefone}}</td>
+					<td>{{pessoa.email}}</td>
+					<td>{{pessoa.endereco}}</td>
+					<td>{{pessoa.tipo}}</td>
+				{% endfor %}
+				</tr>
+			</tbody>
+		</table>
+	{% endif %}		
 	
   </form>
 </div>

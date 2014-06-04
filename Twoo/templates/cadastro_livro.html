@@ -12,18 +12,8 @@
 
   <form class="form-signin" role="form" action="." method="post"> {% csrf_token %}
 	<h2 class="form-signin-heading">Cadastro</h2>
-	
-	<input type="text" class="form-control" id="codigo" name= "codigo" placeholder="Codigo" required autofocus>
-	<input type="text" class="form-control" id="titulo" name= "titulo" placeholder="Titulo" required>
-	<input type="text" class="form-control" id="autor" name= "autor" placeholder="Autor" required>
-	<input type="text" class="form-control" id="editora" name= "editora" placeholder="Editora" required>
-	<input type="text" class="form-control" id="genero" name= "genero" placeholder="Genero" required>
-	<input type="text" class="form-control" id="publicacao" name= "publicacao" placeholder="Ano: 0000" required>
-	
-	
-	<textarea id="sinopse" name="sinopse" placeholder="Sinopse" rows = 10 cols = 63 required></textarea><hr>
-	
-	{{form.biblioteca}}
+		
+	{{form.as_p}}
 	
 	<hr><p><button class="btn btn-lg btn-primary btn-block" type="submit">Salvar</button></p>
   </form>
