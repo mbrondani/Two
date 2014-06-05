@@ -6,6 +6,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from datetime import datetime, date
 
 ## ------------------------------------------- START MODELS
 
@@ -22,13 +23,13 @@ class Biblioteca(models.Model):
 
 class Livro(models.Model):
 
-    codigo = models.CharField(max_length = 10)
-    publicacao = models.IntegerField()
-    autor = models.CharField(max_length = 80)
-    editora = models.CharField(max_length = 45)
-    genero = models.CharField(max_length = 45)
-    sinopse = models.CharField(max_length=150)
-    titulo = models.CharField(max_length = 150)
+    codigo = models.CharField('Codigo', max_length = 10)
+    publicacao = models.CharField('Ano de Publicação', max_length = 10)
+    autor = models.CharField('Autor', max_length = 80)
+    editora = models.CharField('Editora', max_length = 45)
+    genero = models.CharField('Genero', max_length = 45)
+    sinopse = models.CharField('Sinopse', max_length=150)
+    titulo = models.CharField('Titulo', max_length = 150)
 
     biblioteca = models.ForeignKey(Biblioteca, blank=True, null=False)
 
@@ -49,7 +50,7 @@ class Pessoa(models.Model):
 
     biblioteca = models.ForeignKey(Biblioteca, blank=True, null=False)
 
-    def __unicode(self):
+    def __unicode__(self):
         return self.nome
 
 
@@ -61,10 +62,13 @@ class Emprestimo(models.Model):
     cod_func = models.CharField('Codigo do Funcionario', max_length = 10)
     endereco = endereco = models.CharField('Endereço Responsavel', max_length = 200)
     email = models.EmailField('E-mail Responsavel', max_length = 75)
-    pedido = models.DateField('Data do Pedido', )
-    devolucao = models.DateField('Data da Devolução', )
+    pedido = models.DateField('Data do Pedido', default=datetime.now, blank=True)
+    devolucao = models.DateField('Data da Devolução', blank=True)
 
     biblioteca = models.ForeignKey(Biblioteca, blank=True, null=False)
+
+    def __unicode__(self):
+        return "%s | %s" %(self.pk, self.cod_livro)
 
 
 class UserSystem (models.Model):
@@ -82,10 +86,18 @@ class UserSystem (models.Model):
 ## ------------------------------------------- START MODELS
 
 
+##def dataEntrega():
+##    days = 20
+##    dateNow = date.today()
+##    return date.fromordinal(dateNow.toordinal() + days)
+##
+##dataEntrega = dataEntrega()
+
+
 #===============================================================================
-#                             Observa��es
+#                             Observacoes
 # querySet = Lista de Objetos
-# Field = Classe responsavel por valida��o
-# Widget = Representa��o do Field em HTML
+# Field = Classe responsavel por validacao
+# Widget = Representacao do Field em HTML
 #
 #===============================================================================

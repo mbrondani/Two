@@ -1,22 +1,18 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
 {% load staticfiles %}
 
-{% block title %}
-	<title>Chameleon | Acesso Negado</title>
+{% block title %}Chameleon | Relatorios{% endblock %}
+
+{% block Estilo %}
 {% endblock %}
 
-
-{% block form %}
-	<h3>ACESSO NEGADO</h3><br>
-
-{% endblock %}
-
-
-{% block body %}
+{% block Corpo %}
+	<br><br>
 	<div class="container">
-		<p>• Verifique se está logado no sistema.</p>
-		<p>• Verifique o nome de usuario.</p>
-		<p>• Verifique se a senha esta correta</p>
+		<h3>Função Indisponivel.</h3>
 	<div>
 	<hr>
+{% endblock %}
+
+{% block JScript %}
 {% endblock %}

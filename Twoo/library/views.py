@@ -20,7 +20,7 @@ from library.forms import *
 
 def index(request):
 
-    next = request.REQUEST.get('next', 'cadBiblioteca')
+    next = request.REQUEST.get('next', 'cadastro/biblioteca/')
 
     username = request.REQUEST.get('username')
     password = request.REQUEST.get('password')
@@ -171,45 +171,39 @@ def pesqUsuario(request):
 
 ## --------------------------- END PESQUISAS
 
-
 ## --------------------------- START DELETE
 
 @login_required
-def delLivro(request):
+def delLivro(request, id):
 
-    codigo = request.REQUEST.get('codigo')
-    oLivro = Livro.objects.get(pk = codigo)
-
+    oLivro = Livro.objects.get(pk=id)
     if request.method == "POST" and oLivro is not None:
         oLivro.delete()
-        return HttpResponseRedirect('')
+        return HttpResponseRedirect(reverse('nPesqLivro'))
 
-    return render(request, 'template.html')
+    return render(request, 'pesquisa_livro.html')
 
 
 @login_required
-def delPessoa(request):
+def delPessoa(request, id):
 
-    codigo = request.REQUEST.get('codigo')
-    oPessoa = Pessoa.objects.get(pk = codigo)
+    oPessoa = Pessoa.objects.get(pk=id)
 
     if request.method == "POST" and oPessoa is not None:
         oPessoa.delete()
-        return HttpResponseRedirect('')
+        return HttpResponseRedirect(reverse('nPesqUsuario'))
 
-    return render(request, 'template.html')
+    return render(request, 'pesquisa_usuario.html')
 
 
 ## --------------------------- END DELETE
 
-
 ## --------------------------- START UPDATES
 
-def upLivro(request):
+@login_required
+def upLivro(request, id):
 
-    codigo = request.REQUEST.get('codigo')
-    oLivro = Livro.objects.get(pk=codigo)
-
+    oLivro = Livro.objects.get(pk=id)
     if request.method == 'POST':
         form = FormLivro(request.POST, instance=oLivro)
         if form.is_valid():
@@ -221,15 +215,14 @@ def upLivro(request):
     return render(request,'template.html',
                 {
                     'form':form,
-                    'codigo':codigo,
+                    'codigo':id,
                 }
             )
 
-def upPessoa(request):
+@login_required
+def upPessoa(request, id):
 
-    codigo = request.REQUEST.get('codigo')
-    oPessoa = Pessoa.objects.get(pk=codigo)
-
+    oPessoa = Pessoa.objects.get(pk=id)
     if request.method == 'POST':
         form = FormPessoa(request.POST, instance=oPessoa)
         if form.is_valid():
@@ -241,20 +234,14 @@ def upPessoa(request):
     return render(request,'template.html',
                 {
                     'form':form,
-                    'codigo':codigo,
+                    'codigo':id,
                 }
             )
 
 
 ## --------------------------- END UPDATES
 
-
 ## --------------------------- START FUNCIONALIDADES
-
-
-@login_required
-def statusEmprestimo(request):
-    pass
 
 
 @login_required

@@ -25,18 +25,20 @@
 					<th>E-mail</th>
 					<th>Endereço</th>
 					<th>Tipo</th>
+					<th>Ação</th>
 				</tr>	
 			</thead>
 			<tbody>
-				<tr>
-				{% for pessoa in oPessoa %}
+			{% for pessoa in oPessoa %}
+				<tr>				
 					<td>{{pessoa.nome}}</td>
 					<td>{{pessoa.telefone}}</td>
 					<td>{{pessoa.email}}</td>
 					<td>{{pessoa.endereco}}</td>
 					<td>{{pessoa.tipo}}</td>
-				{% endfor %}
+					<td><a href="">Editar</a></td>
 				</tr>
+			{% endfor %}	
 			</tbody>
 		</table>
 	{% endif %}		
