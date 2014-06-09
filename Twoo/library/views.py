@@ -255,6 +255,16 @@ def sairSistema(request):
     return HttpResponseRedirect(reverse('nIndex'))
 
 
+@login_required
+def sobre(request):
+    return render_to_response('sobre.html')
+
+
+@login_required
+def contato(request):
+    pass
+
+
 def acessoNegado(request):
     return render_to_response('acesso_negado.html')
 

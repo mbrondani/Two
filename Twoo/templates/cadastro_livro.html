@@ -1,25 +1,67 @@
-﻿{% extends 'base.html' %}
+{% extends 'base.html' %}
 {% load staticfiles %}
 
-{% block title %}Chameleon | Cadastro de Livro{% endblock %}
+{% block title %}{% endblock %}
 
 {% block Estilo %}
-<link href="{% static 'css/cadastros.css' %}" rel="stylesheet">
-{% endblock %}
-
-{% block Corpo %}		
-<div class="container">
-
-  <form class="form-signin" role="form" action="." method="post"> {% csrf_token %}
-	<h2 class="form-signin-heading">Cadastro</h2>
-
-	{{form.as_p}}
-	
-	<p><button class="btn btn-lg btn-primary btn-block" type="submit">Salvar</button></p>
-  </form>
-  
-</div>
 {% endblock %}
 
 {% block JScript %}
+{% endblock %}
+
+{% block Content %}
+	<h3 class="blocoH3">Cadastro de Livro</h3>
+	<form class="form-horizontal" action="." method="post"> {% csrf_token %}
+		<div class="control-group">
+			<label for="codigo" class="control-label">Codigo</label>
+			<div class="controls">
+				<input type="text" id="codigo" name="codigo" placeholder="Codigo" required autofocus>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label for="titulo" class="control-label">Titulo</label>
+			<div class="controls">
+				<input type="text" id="titulo" name="titulo" placeholder="Titulo" required>
+			</div>
+		</div>		
+
+		<div class="control-group">
+			<label for="autor" class="control-label">Autor</label>
+			<div class="controls">
+				<input type="text" id="autor" name="autor" placeholder="Autor" required>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label for="genero" class="control-label">Genero</label>
+			<div class="controls">
+				<input type="text" id="genero" name="genero" placeholder="Genero" required>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label for="editora" class="control-label">Editora</label>
+			<div class="controls">
+				<input type="text" id="editora" name="editora" placeholder="Editora" required>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label for="publicacao" class="control-label">Ano de Publicação</label>
+			<div class="controls">
+				<input type="text" id="publicacao" name="publicacao" placeholder="Publicação" required>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<div class="controls">
+				{{form.biblioteca}}	
+				<button class="btn btn-success" type="submit">Cadastrar</button>
+			</div>
+		</div>									
+	</form>
+{% endblock %}
+
+{% block ContentBar %}
 {% endblock %}

@@ -1,48 +1,17 @@
-﻿{% extends 'base.html' %}
+{% extends 'base.html' %}
 {% load staticfiles %}
 
-{% block title %}Chameleon | Pesquisa de Usuario{% endblock %}
+{% block title %}Chameleon | Pesquisa de Livros{% endblock %}
 
 {% block Estilo %}
-<link href="{% static 'css/pesquisas.css' %}" rel="stylesheet">
-{% endblock %}
-
-{% block Corpo %}		
-<div class="container">
-
-  <form class="form-signin" role="form" action="." method="post"> {% csrf_token %}
-	<h2 class="form-signin-heading">Pesquisa</h2>
-	
-	<input type="text" class="form-control" id="pesquisa" name= "pesquisa" placeholder="Pesquisa" required autofocus/>	
-	<button class="btn btn-lg btn-primary" type="submit" id="pesquisar" name="pesquisar">Buscar</button>
-	
-	{% if oLivro %}
-		<table class="resultado">
-			<thead>
-				<tr>
-					<th>Codigo(ID)</th>
-					<th>Titulo</th>
-					<th>Autor</th>
-					<th>Genero</th>
-					<th>Disponivel</th>
-				</tr>	
-			</thead>
-			<tbody>
-			{% for livro in oLivro %}
-				<tr>				
-					<td>{{livro.pk}}</td>
-					<td>{{livro.titulo}}</td>
-					<td>{{livro.autor}}</td>
-					<td>{{livro.genero}}</td>
-					<td>{{livro.disponivel}}</td>
-				</tr>
-			{% endfor %}
-			</tbody>
-		</table>
-	{% endif %}	
-  </form>
-</div>
 {% endblock %}
 
 {% block JScript %}
+{% endblock %}
+
+{% block Content %}
+	
+{% endblock %}
+
+{% block ContentBar %}
 {% endblock %}
