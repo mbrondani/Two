@@ -14,9 +14,9 @@
 	<h3 class="blocoH3">Pesquisa de Livro</h3>
 	<form class="form-horizontal" action="." method="post"> {% csrf_token %}
 		<div class="control-group">
-			<label for="pesquisa" class="control-label">Codigo de Usuario</label>
+			<label for="pesquisa" class="control-label">Nome de Usuario</label>
 			<div class="controls">
-				<input type="text" id="pesquisa" name="pesquisa" placeholder="Ex: 21" required autofocus>
+				<input type="text" id="pesquisa" name="pesquisa" placeholder="Ex: Gustavo" required autofocus>
 				<button class="btn btn-success" type="submit">Buscar</button>
 			</div>
 		</div>
@@ -26,10 +26,10 @@
 		<table class="resultado table table-hover table-bordered">
 			<thead>
 				<tr>
-					<th>Nome</th>
+					<th>Codigo</th>
 					<th>Telefone</th>
 					<th>E-mail</th>
-					<th>Endereço</th>
+					<th>CPF</th>
 					<th>Tipo</th>
 					<th>Ação</th>
 				</tr>	
@@ -37,10 +37,10 @@
 			<tbody>
 			{% for pessoa in oPessoa %}
 				<tr>				
-					<td>{{pessoa.nome}}</td>
+					<td>{{pessoa.pk}}</td>
 					<td>{{pessoa.telefone}}</td>
 					<td>{{pessoa.email}}</td>
-					<td>{{pessoa.endereco}}</td>
+					<td>{{pessoa.cpf}}</td>
 					<td>{{pessoa.tipo}}</td>
 					<td><a href="">Editar</a></td>
 				</tr>

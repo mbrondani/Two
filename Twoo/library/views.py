@@ -160,7 +160,7 @@ def pesqLivro(request):
 def pesqUsuario(request):
 
     pesquisa = request.REQUEST.get('pesquisa')
-    oPessoa = Pessoa.objects.filter(pk = pesquisa)
+    oPessoa = Pessoa.objects.filter(nome = pesquisa)
 
     return render(request, 'pesquisa_usuario.html',
                 {
