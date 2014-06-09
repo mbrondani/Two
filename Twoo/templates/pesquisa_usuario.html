@@ -14,35 +14,37 @@
 	<h3 class="blocoH3">Pesquisa de Livro</h3>
 	<form class="form-horizontal" action="." method="post"> {% csrf_token %}
 		<div class="control-group">
-			<label for="pesquisa" class="control-label">Codigo do Livro</label>
+			<label for="pesquisa" class="control-label">Codigo de Usuario</label>
 			<div class="controls">
-				<input type="text" id="pesquisa" name="pesquisa" placeholder="Ex: GDT01" required autofocus>
+				<input type="text" id="pesquisa" name="pesquisa" placeholder="Ex: 21" required autofocus>
 				<button class="btn btn-success" type="submit">Buscar</button>
 			</div>
 		</div>
 	</form>
-
-	{% if oLivro %}
+	
+	{% if oPessoa %}
 		<table class="resultado table table-hover table-bordered">
 			<thead>
 				<tr>
-					<th>Codigo(ID)</th>
-					<th>Titulo</th>
-					<th>Autor</th>
-					<th>Genero</th>
-					<th>Disponivel</th>
+					<th>Nome</th>
+					<th>Telefone</th>
+					<th>E-mail</th>
+					<th>Endereço</th>
+					<th>Tipo</th>
+					<th>Ação</th>
 				</tr>	
 			</thead>
 			<tbody>
-			{% for livro in oLivro %}
+			{% for pessoa in oPessoa %}
 				<tr>				
-					<td>{{livro.pk}}</td>
-					<td>{{livro.titulo}}</td>
-					<td>{{livro.autor}}</td>
-					<td>{{livro.genero}}</td>
-					<td>{{livro.disponivel}}</td>
+					<td>{{pessoa.nome}}</td>
+					<td>{{pessoa.telefone}}</td>
+					<td>{{pessoa.email}}</td>
+					<td>{{pessoa.endereco}}</td>
+					<td>{{pessoa.tipo}}</td>
+					<td><a href="">Editar</a></td>
 				</tr>
-			{% endfor %}
+			{% endfor %}	
 			</tbody>
 		</table>
 	{% endif %}	
@@ -50,4 +52,4 @@
 {% endblock %}
 
 {% block ContentBar %}
-{% endblock %}
+{% endblock %}	

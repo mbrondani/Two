@@ -28,7 +28,6 @@ class Livro(models.Model):
     autor = models.CharField('Autor', max_length = 80)
     editora = models.CharField('Editora', max_length = 45)
     genero = models.CharField('Genero', max_length = 45)
-    sinopse = models.CharField('Sinopse', max_length=150)
     titulo = models.CharField('Titulo', max_length = 150)
 
     biblioteca = models.ForeignKey(Biblioteca, blank=True, null=False)

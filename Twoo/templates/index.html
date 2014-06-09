@@ -28,31 +28,42 @@
   <body>
 
     <div class="container">
-
-      <form class="form-signin" role="form" action="." method="post"> {% csrf_token %}
-		{% block form %}
-        <h2 class="form-signin-heading">Login</h2>
-        
-        <input type="text" class="form-control" id="username" name="username" placeholder="Usuario" required autofocus>
-		    <input type="hidden" name="next" id="next" value="{{ next }}">
-        <input type="password" class="form-control" id="password" name="password" placeholder="Senha" required>
-
-        <button class="btn btn-lg btn-primary" type="submit">Entrar</button><br><br>
+    {% block form %}
+      <h3 class="blocoH3">Cadastro de Acesso</h3>
+      <form class="form-horizontal" action="." method="post"> {% csrf_token %}
 		
-		<label>
+        <div class="control-group">
+          <label for="username" class="control-label">Usuario</label>
+          <div class="controls">
+            <input type="text" id="username" name="username" placeholder="Usuario" required autofocus>
+          </div>
+        </div>
+        
+		    <input type="hidden" name="next" id="next" value="{{ next }}">
+        
+        <div class="control-group">
+          <label for="pesquisa" class="control-label">Senha</label>
+          <div class="controls">
+            <input type="password" id="password" name="password" placeholder="Senha" required>
+            <button class="btn btn-lg btn-success" type="submit">Entrar</button>
+          </div>
+        </div>        
+		
+		    <label>
           <br><p><a href="{% url 'library.views.cadSistema' %}">Cadastro de Acesso</a></p>
         </label>
-		{% endblock %}
       </form>
-
+    {% endblock %}
     </div>
 	
 	{% block body %}
 		
 	{% endblock %}
 	
-	<footer class="container">
-		<p><small>&copy; Copyright - Chameleon | Contact information: <a href="">rayanepaiiva@live.com</a></small></p>
+	<footer class="footer">
+    <div class="container">
+		  <p><small>&copy; Copyright - Chameleon | Contact information: <a href="">rayanepaiiva@live.com</a></small></p>
+    </div>
 	</footer>	
   </body>
 </html>

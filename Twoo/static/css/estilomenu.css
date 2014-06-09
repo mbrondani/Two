@@ -1,13 +1,7 @@
 body{
 	padding-top: 40px;
-}
-
-.bloco1{
-  background-color: #BCD2EE;
-}
-
-.bloco2{
-  background-color: #BEBEBE;
+  padding-bottom: 40px;
+  background-color: #eee;
 }
 
 .blocoHome{
@@ -19,11 +13,36 @@ body{
 }
 
 
+table {
+  border-collapse: separate;
+  border-spacing: 80px 10px;
+}
+
+.resultado th{
+  text-align: center;
+}
+
+.resultado td{
+  white-space: nowrap;
+  text-align: center;
+}
+
+.info{
+  padding-top: 30px;
+}
+
+.textoSobre{
+  text-align: justify;
+}
 /* Start Footer
 -------------------------------------------------- */
 
 
 .footer {
+
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   padding: 20px 0;
   margin-top: 10px;
   border-top: 1px solid #e5e5e5;

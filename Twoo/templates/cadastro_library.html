@@ -7,22 +7,39 @@
 {% endblock %}
 
 {% block Content %}
-    <div class="container">
+    <div class="blocoHome">
 
-      <form class="starter-template" role="form" action="." method="post"> {% csrf_token %}
-        <h2>Cadastro Library</h2>
-		<input type="text" class="form-control" id="nome" name= "nome" placeholder="Nome" required autofocus>
-		<input type="text" class="form-control" id="endereco" name= "endereco" placeholder="Endereço" required>
-        <input type="text" class="form-control" id="telefone" name= "telefone" placeholder="Telefone" required>
+      <form class="form-horizontal" action="." method="post"> {% csrf_token %}
+		<h2>Cadastro Library</h2>
 		
-		<br><p><button class="btn btn-lg btn-primary" type="submit">Cadastrar</button></p>
-		
-		<div>
-			<small>
-				<p><b>OBS: Você não ira conseguir realizar outros cadastros sem antes cadastrar os dados de sua Biblioteca.</b></p>
-			</small>
+		<div class="control-goup">
+			<label for="nome" class="control-label">Nome</label>
+				<div class="controls">
+					<input type="text" id="nome" name= "nome" placeholder="Nome" required autofocus>
+				</div>
 		</div>
-      </form>
-	  
+
+		<div class="control-goup">
+			<label for="endereco" class="control-label">Endereço</label>
+				<div class="controls">
+					<input type="text" id="endereco" name= "endereco" placeholder="Endereço" required>
+				</div>
+		</div>
+
+		<div class="control-goup">
+			<label for="nome" class="control-label">Telefone</label>
+				<div class="controls">
+					<input type="text" id="telefone" name= "telefone" placeholder="Telefone" required>
+					<button class="btn btn-lg btn-primary" type="submit">Cadastrar</button>
+				</div>
+		</div>					
+      </form>	  
     </div>	
+{% endblock %}
+
+
+{% block ContentBar %}
+	<small class="">
+		<p><b>OBS: Você não ira conseguir realizar outros cadastros sem antes cadastrar os dados de sua Biblioteca.</b></p>
+	</small>			
 {% endblock %}

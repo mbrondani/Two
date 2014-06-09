@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Chameleon | Pesquisa de Livros{% endblock %}
+
+{% block Estilo %}
+{% endblock %}
+
+{% block JScript %}
+{% endblock %}
+
+{% block Content %}
+<div class="container">
+	<h3 class="blocoH3">Cadastro de Emprestimos</h3>
+	<form class="form-horizontal" action="." method="post"> {% csrf_token %}
+
+		<div class="control-group">
+			<label for="cod_livro" class="control-label">ID Livro</label>
+			<div class="controls">
+				<input type="text" id="cod_livro" name="cod_livro" placeholder="Ex: 33" required autofocus>
+			</div>
+		</div>
+	
+		<div class="control-group">
+			<label for="titulo" class="control-label">Titulo</label>
+			<div class="controls">
+				<input type="text" id="titulo" name="titulo" placeholder="Titulo" required>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label for="cod_usuario" class="control-label">ID do Responsavel</label>
+			<div class="controls">
+				<input type="text" id="cod_usuario" name="cod_usuario" placeholder="Ex: 55" required>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label for="cod_func" class="control-label">ID do Funcionario</label>
+			<div class="controls">
+				<input type="text" id="cod_func" name="cod_func" placeholder="Ex: 55" required>
+			</div>
+		</div>
+	
+		<div class="control-group">
+			<label for="endereco" class="control-label">Endereço</label>
+			<div class="controls">
+				<input type="text" id="endereco" name="endereco" placeholder="Ex: Rua Dois" required>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label for="email" class="control-label">E-mail</label>
+			<div class="controls">
+				<input type="text" id="email" name="email" placeholder="usuario@dominio.com.br" required>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label for="pedido" class="control-label">Data de Saida</label>
+			<div class="controls">
+				<input type="text" id="pedido" name="pedido" placeholder="00/00/0000" required>
+			</div>
+		</div>
+	
+		<div class="control-group">
+			<label for="devolucao" class="control-label">Data de Entrega</label>
+			<div class="controls">
+				<input type="text" id="devolucao" name="devolucao" placeholder="00/00/0000" required>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label for="" class="control-label"></label>
+			<div class="controls">
+				{{form.biblioteca}}
+				<button class="btn btn-success" type="submit">Confirmar</button>
+			</div>
+		</div>						
+  </form>
+  
+</div>
+{% endblock %}
+
+{% block ContentBar %}
+{% endblock %}

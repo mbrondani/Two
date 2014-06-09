@@ -12,6 +12,14 @@
 {% block Content %}		
 	<h3 class="blocoH3">Cadastro de Usuario</h3>
 	<form class="form-horizontal" action="." method="post"> {% csrf_token %}
+
+		<div class="control-group">
+			<label for="codigo" class="control-label">Codigo</label>
+			<div class="controls">
+				<input type="text" id="codigo" name="codigo" placeholder="Codigo" required autofocus>
+			</div>
+		</div>
+
 		<div class="control-group">
 			<label for="nome" class="control-label">Nome</label>
 			<div class="controls">
@@ -53,6 +61,13 @@
 				<input type="email" id="email" name="email" placeholder="email@email.com" required>
 			</div>
 		</div>
+
+		<div class="control-group">
+			<label for="tipo" class="control-label">Tipo</label>
+			<div class="controls">
+				<input type="text" id="tipo" name="tipo" placeholder="Ex: Socio, Gerente" required>
+			</div>
+		</div>		
 
 		<div class="control-group">
 			<div class="controls">

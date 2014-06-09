@@ -6,11 +6,30 @@
 {% endblock %}
 
 {% block form %}
-	<h2 class="form-signin-heading">Cadastro de Acesso</h2>
-	
-	<input type="text" class="form-control" id="username" name="username" placeholder="Usuario" required autofocus>
-	<input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
-	<input type="password" class="form-control" id="password" name="password" placeholder="Senha" required>
 
-	<button class="btn btn-lg btn-primary" type="submit">Cadastrar</button>
+	<h3 class="blocoH3">Cadastro de Acesso</h3>
+	<form class="form-horizontal" action="." method="post"> {% csrf_token %}
+		<div class="control-group">
+			<label for="username" class="control-label">Usuario</label>
+			<div class="controls">
+				<input type="text" id="username" name="username" placeholder="Usuario" required autofocus>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label for="email" class="control-label">E-mail</label>
+			<div class="controls">
+				<input type="email" id="email" name="email" placeholder="Email" required>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label for="pesquisa" class="control-label">Senha</label>
+			<div class="controls">
+				<input type="password" id="password" name="password" placeholder="Senha" required>
+				<button class="btn btn-lg btn-success" type="submit">Cadastrar</button>
+			</div>
+		</div>				
+	</form>
+
 {% endblock %}

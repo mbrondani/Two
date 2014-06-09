@@ -35,7 +35,7 @@ urlpatterns = patterns('',
     url(r'^relatorios/$', 'library.views.relatorios', name='nRelatorios'),
 
     url(r'^sobre/$', 'library.views.sobre', name='nSobre'),
-    url(r'^contato/$', 'library.views.contato', name='nContato'),
+    url(r'^ajuda/$', 'library.views.ajuda', name='nContato'),
 
     url(r'^logout/$', 'library.views.sairSistema', name='nLogout'),
     url(r'^acessoNegado/', 'library.views.acessoNegado', name='nAcessoNeg'),

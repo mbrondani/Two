@@ -245,6 +245,16 @@ def upPessoa(request, id):
 
 
 @login_required
+def sobre(request):
+    return render_to_response('sobre.html')
+
+
+@login_required
+def ajuda(request):
+    return render_to_response('ajuda.html')
+
+
+@login_required
 def relatorios(request):
     return render(request, 'relatorios.html')
 
@@ -253,16 +263,6 @@ def relatorios(request):
 def sairSistema(request):
     logout(request)
     return HttpResponseRedirect(reverse('nIndex'))
-
-
-@login_required
-def sobre(request):
-    return render_to_response('sobre.html')
-
-
-@login_required
-def contato(request):
-    pass
 
 
 def acessoNegado(request):
