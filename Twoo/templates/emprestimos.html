@@ -52,26 +52,26 @@
 		<div class="control-group">
 			<label for="email" class="control-label">E-mail</label>
 			<div class="controls">
-				<input type="text" id="email" name="email" placeholder="usuario@dominio.com.br" required>
+				<input type="email" id="email" name="email" placeholder="usuario@dominio.com.br" required>
 			</div>
 		</div>
 
 		<div class="control-group">
 			<label for="pedido" class="control-label">Data de Saida</label>
 			<div class="controls">
-				<input type="text" id="pedido" name="pedido" placeholder="00/00/0000" required>
+				<input type="date" id="pedido" name="pedido" placeholder="00/00/0000" required>
 			</div>
 		</div>
 	
 		<div class="control-group">
 			<label for="devolucao" class="control-label">Data de Entrega</label>
 			<div class="controls">
-				<input type="text" id="devolucao" name="devolucao" placeholder="00/00/0000" required>
+				<input type="date" id="devolucao" name="devolucao" placeholder="00/00/0000" required>
 			</div>
 		</div>
 
 		<div class="control-group">
-			<label for="" class="control-label"></label>
+			<label for="id_biblioteca" class="control-label">Biblioteca</label>
 			<div class="controls">
 				{{form.biblioteca}}
 				<button class="btn btn-success" type="submit">Confirmar</button>

@@ -58,7 +58,8 @@
 							</a>
 							<ul class="dropdown-menu">
 								<li><a href="{% url 'library.views.pesqLivro' %}">Livro</a></li>
-								<li><a href="{% url 'library.views.pesqUsuario' %}">Usuarios</a></li>								
+								<li><a href="{% url 'library.views.pesqUsuario' %}">Usuarios</a></li>
+								<li><a href="{% url 'library.views.pesqEmprestimo' %}">Emprestimos</a></li>	
 							</ul>
 						</li>
 						<li><a href="{% url 'library.views.cadEmprestimo' %}">Emprestimos</a></li>
@@ -82,7 +83,11 @@
 					{% block Content %} <!--# Bloco de Conteudo principal #-->
 					{% endblock %}					
 				</div>
-				<div class="span2 blocoSpan2"></div>
+				<div class="span2 blocoSpan2">
+					<h3 class="blocoH3"></h3>
+					{% block ContentBar %}
+					{% endblock %}
+				</div>
 			</div>
 		</div>
 	</div>	

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Chameleon | Pesquisa de Emprestimos{% endblock %}
+
+{% block Estilo %}
+{% endblock %}
+
+{% block JScript %}
+{% endblock %}
+
+{% block Content %}
+
+	<h3 class="blocoH3">Pesquisa de Livros Emprestados</h3>
+	<form class="form-horizontal" action="." method="post"> {% csrf_token %}
+
+		<div class="control-group">
+			<label for="pesquisa" class="control-label">Codigo de Usuario</label>
+			<div class="controls">
+				<input type="text" id="pesquisa" name="pesquisa" placeholder="Ex: 1" required autofocus>
+				<button class="btn btn-success" type="submit">Buscar</button>
+			</div>
+		</div>
+		
+	</form>
+	
+	{% if oEmprestimo %}
+		<table class="resultado table table-hover table-bordered">
+			<thead>
+				<tr>
+					<th>Titulo do Livro</th>
+					<th>Data Pedido</th>
+					<th>Data Devolução</th>
+					<th>Codigo do Funcionario</th>
+					<th>Codigo do Livro</th>
+					<th>Ação</th>
+				</tr>	
+			</thead>
+			<tbody>
+			{% for emprestimo in oEmprestimo %}
+				<tr>				
+					<td>{{emprestimo.titulo}}</td>
+					<td>{{emprestimo.pedido}}</td>
+					<td>{{emprestimo.devolucao}}</td>
+					<td>{{emprestimo.cod_func}}</td>
+					<td>{{emprestimo.cod_livro}}</td>
+					<td><a href="">Editar</a></td>
+				</tr>
+			{% endfor %}	
+			</tbody>
+		</table>
+	{% endif %}	
+
+{% endblock %}
+
+{% block ContentBar %}
+{% endblock %}	

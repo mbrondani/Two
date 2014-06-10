@@ -40,7 +40,7 @@ class Pessoa(models.Model):
 
     codigo = models.CharField('Codigo', max_length = 10)
     nome = models.CharField('Nome', max_length = 100)
-    d_nasc = models.CharField('Data de Nascimento', max_length = 10)
+    d_nasc = models.DateField('Data de Nascimento')
     cpf = models.CharField('CPF',max_length = 14)
     telefone = models.CharField('Telefone',max_length = 12)
     endereco = models.CharField('Endereço',max_length = 200)
@@ -56,10 +56,10 @@ class Pessoa(models.Model):
 class Emprestimo(models.Model):
 
     cod_livro = models.CharField('Codigo do Livro (ID)', max_length = 10)
-    titulo = titulo = models.CharField('Titulo', max_length = 150)
+    titulo = models.CharField('Titulo', max_length = 150)
     cod_usuario = models.CharField('Codigo do Responsavel', max_length = 10)
     cod_func = models.CharField('Codigo do Funcionario', max_length = 10)
-    endereco = endereco = models.CharField('Endereço Responsavel', max_length = 200)
+    endereco = models.CharField('Endereço Responsavel', max_length = 200)
     email = models.EmailField('E-mail Responsavel', max_length = 75)
     pedido = models.DateField('Data do Pedido', default=datetime.now, blank=True)
     devolucao = models.DateField('Data da Devolução', blank=True)

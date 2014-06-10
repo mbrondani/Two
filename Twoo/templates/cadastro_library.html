@@ -10,7 +10,7 @@
     <div class="blocoHome">
 
       <form class="form-horizontal" action="." method="post"> {% csrf_token %}
-		<h2>Cadastro Library</h2>
+		<h3 class="blocoH3">Cadastro Library</h3>
 		
 		<div class="control-goup">
 			<label for="nome" class="control-label">Nome</label>
@@ -33,13 +33,16 @@
 					<button class="btn btn-lg btn-primary" type="submit">Cadastrar</button>
 				</div>
 		</div>					
-      </form>	  
-    </div>	
+      </form>
+      <div class="alert">
+		<small class="">
+			OBS: Você não ira conseguir realizar outros cadastros sem antes cadastrar os dados de sua Biblioteca. Realize o cadastro das informações!
+		</small>
+	  </div>
+    </div>
+
 {% endblock %}
 
 
-{% block ContentBar %}
-	<small class="">
-		<p><b>OBS: Você não ira conseguir realizar outros cadastros sem antes cadastrar os dados de sua Biblioteca.</b></p>
-	</small>			
+{% block ContentBar %}		
 {% endblock %}

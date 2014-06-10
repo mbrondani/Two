@@ -23,21 +23,26 @@ urlpatterns = patterns('',
 
     url(r'^cadastro/sistema/$', 'library.views.cadSistema', name='nCadSistema'),
     url(r'^cadastro/biblioteca/$', 'library.views.cadBiblioteca', name='nCadLib'),
-
     url(r'^cadastro/livro/$', 'library.views.cadLivro', name='nCadLivro'),
     url(r'^cadastro/pessoa/$', 'library.views.cadPessoa', name='nCadUsuario'),
-
-    url(r'^cadastro/emprestimo$', 'library.views.cadEmprestimo', name='nEmprestimo'),
+    url(r'^cadastro/emprestimo/$', 'library.views.cadEmprestimo', name='nEmprestimo'),
 
     url(r'^pesquisa/livro/$', 'library.views.pesqLivro', name='nPesqLivro'),
     url(r'^pesquisa/usuario/$', 'library.views.pesqUsuario', name='nPesqUsuario'),
+    url(r'^pesquisa/emprestimo/$', 'library.views.pesqEmprestimo', name='nPesqEmpres'),
+
+    url(r'^.+/editar/livro/(?P<id>\d+)/$', 'library.views.upLivro', name='nUpLivro'),
+    url(r'^.+/editar/usuario/(?P<id>\d+)/$', 'library.views.upPessoa', name='nUpPessoa'),
+    url(r'^.+/editar/emprestimo/(?P<id>\d+)/$', 'library.views.upEmprestimo', name='nUpEmpres'),
+
+    url(r'^.+/deletar/livro/(?P<id>\d+)/$', 'library.views.delLivro', name='nDelLivro'),
+    url(r'^.+/deletar/usuario/(?P<id>\d+)/$', 'library.views.delPessoa',name='nDelPessoa'),
 
     url(r'^relatorios/$', 'library.views.relatorios', name='nRelatorios'),
-
     url(r'^sobre/$', 'library.views.sobre', name='nSobre'),
     url(r'^ajuda/$', 'library.views.ajuda', name='nContato'),
-
     url(r'^logout/$', 'library.views.sairSistema', name='nLogout'),
+
     url(r'^acessoNegado/', 'library.views.acessoNegado', name='nAcessoNeg'),
 
     #===============================================================================#

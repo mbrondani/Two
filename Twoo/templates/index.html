@@ -30,6 +30,7 @@
     <div class="container">
     {% block form %}
       <h3 class="blocoH3">Cadastro de Acesso</h3>
+      
       <form class="form-horizontal" action="." method="post"> {% csrf_token %}
 		
         <div class="control-group">
@@ -52,12 +53,12 @@
 		    <label>
           <br><p><a href="{% url 'library.views.cadSistema' %}">Cadastro de Acesso</a></p>
         </label>
+
       </form>
     {% endblock %}
     </div>
 	
-	{% block body %}
-		
+	{% block body %}		
 	{% endblock %}
 	
 	<footer class="footer">

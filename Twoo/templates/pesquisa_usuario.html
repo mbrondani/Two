@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
-{% block title %}Chameleon | Pesquisa de Livros{% endblock %}
+{% block title %}Chameleon | Pesquisa de Usuarios{% endblock %}
 
 {% block Estilo %}
 {% endblock %}
@@ -11,8 +11,9 @@
 
 {% block Content %}
 
-	<h3 class="blocoH3">Pesquisa de Livro</h3>
+	<h3 class="blocoH3">Pesquisa de Usuarios</h3>
 	<form class="form-horizontal" action="." method="post"> {% csrf_token %}
+
 		<div class="control-group">
 			<label for="pesquisa" class="control-label">Nome de Usuario</label>
 			<div class="controls">
@@ -20,6 +21,7 @@
 				<button class="btn btn-success" type="submit">Buscar</button>
 			</div>
 		</div>
+		
 	</form>
 	
 	{% if oPessoa %}
@@ -42,7 +44,7 @@
 					<td>{{pessoa.email}}</td>
 					<td>{{pessoa.cpf}}</td>
 					<td>{{pessoa.tipo}}</td>
-					<td><a href="">Editar</a></td>
+					<td><a href="editar/usuario/{{ pessoa.pk }}">Editar</a></td>
 				</tr>
 			{% endfor %}	
 			</tbody>

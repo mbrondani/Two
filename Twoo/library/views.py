@@ -10,7 +10,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-
 from library.models import *
 from library.forms import *
 
@@ -169,6 +168,19 @@ def pesqUsuario(request):
             )
 
 
+@login_required
+def pesqEmprestimo(request):
+
+    pesquisa = request.REQUEST.get('pesquisa')
+    oEmprestimo = Emprestimo.objects.filter(cod_usuario = pesquisa)
+
+    return render(request, 'pesquisa_emprestimo.html',
+                {
+                    'oEmprestimo': oEmprestimo,
+                }
+            )
+
+
 ## --------------------------- END PESQUISAS
 
 ## --------------------------- START DELETE
@@ -227,9 +239,29 @@ def upPessoa(request, id):
         form = FormPessoa(request.POST, instance=oPessoa)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('')
+            return HttpResponseRedirect(reverse('nPesqUsuario'))
     else:
         form = FormPessoa(instance=oPessoa)
+
+    return render(request,'edicao_usuario.html',
+                {
+                    'form':form,
+                    'codigo':id,
+                }
+            )
+
+
+@login_required
+def upEmprestimo(request,id):
+
+    oEmprestimo = Emprestimo.objects.get(pk=id)
+    if request.method == 'POST':
+        form = FormEmprestimo(request.POST, instance=oEmprestimo)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('')
+        else:
+            form = FormEmprestimo(instance=oEmprestimo)
 
     return render(request,'template.html',
                 {
