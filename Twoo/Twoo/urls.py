@@ -31,12 +31,12 @@ urlpatterns = patterns('',
     url(r'^pesquisa/usuario/$', 'library.views.pesqUsuario', name='nPesqUsuario'),
     url(r'^pesquisa/emprestimo/$', 'library.views.pesqEmprestimo', name='nPesqEmpres'),
 
-    url(r'^.+/editar/livro/(?P<id>\d+)/$', 'library.views.upLivro', name='nUpLivro'),
-    url(r'^.+/editar/usuario/(?P<id>\d+)/$', 'library.views.upPessoa', name='nUpPessoa'),
-    url(r'^.+/editar/emprestimo/(?P<id>\d+)/$', 'library.views.upEmprestimo', name='nUpEmpres'),
+    url(r'^editar/livro/(?P<id>\d+)/$', 'library.views.upLivro', name='nUpLivro'),
+    url(r'^editar/usuario/(?P<id>\d+)/$', 'library.views.upPessoa', name='nUpPessoa'),
+    url(r'^editar/emprestimo/(?P<id>\d+)/$', 'library.views.upEmprestimo', name='nUpEmpres'),
 
-    url(r'^.+/deletar/livro/(?P<id>\d+)/$', 'library.views.delLivro', name='nDelLivro'),
-    url(r'^.+/deletar/usuario/(?P<id>\d+)/$', 'library.views.delPessoa',name='nDelPessoa'),
+    url(r'^deletar/livro/(?P<id>\d+)/$', 'library.views.delLivro', name='nDelLivro'),
+    url(r'^deletar/usuario/(?P<id>\d+)/$', 'library.views.delPessoa',name='nDelPessoa'),
 
     url(r'^relatorios/$', 'library.views.relatorios', name='nRelatorios'),
     url(r'^sobre/$', 'library.views.sobre', name='nSobre'),

@@ -220,11 +220,11 @@ def upLivro(request, id):
         form = FormLivro(request.POST, instance=oLivro)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('')
+            return HttpResponseRedirect(reverse('nPesqLivro'))
     else:
         form = FormLivro(instance=oLivro)
 
-    return render(request,'template.html',
+    return render(request,'edicao_livro.html',
                 {
                     'form':form,
                     'codigo':id,
