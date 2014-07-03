@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
-{% block title %}Chameleon | Cadastro de Usuario{% endblock %}
+{% block title %}Editar | {{ form.nome.value }} {% endblock %}
 
 {% block Estilo %}
 {% endblock %}
@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block Content %}		
-	<h3 class="blocoH3">Alteração do Usuario: {{ form.nome.value }}</h3>
+	<h3 class="blocoH3">Alteração do Usuario</h3>
 	<form class="form-horizontal" action="." method="post"> {% csrf_token %}
 
 		<div class="control-group">

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
-{% block title %}{% endblock %}
+{% block title %}Editar | {{ form.titulo.value }}{% endblock %}
 
 {% block Estilo %}
 {% endblock %}
@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block Content %}
-	<h3 class="blocoH3">Cadastro de Livro</h3>
+	<h3 class="blocoH3">Alteração de Livro</h3>
 	<form class="form-horizontal" action="." method="post"> {% csrf_token %}
 		<div class="control-group">
 			<label for="codigo" class="control-label">Codigo</label>
